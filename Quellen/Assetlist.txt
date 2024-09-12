@@ -5,3 +5,4 @@ https://assetstore.unity.com/packages/audio/sound-fx/footstep-snow-and-grass-906
 https://assetstore.unity.com/packages/3d/vegetation/trees/snowy-low-poly-trees-76796#description - Low Poly Snowy trees
 https://assetstore.unity.com/packages/3d/vegetation/trees/snowy-low-poly-trees-76796#description - Low Poly Rocks
 https://assetstore.unity.com/packages/tools/terrain/terrain-creator-low-poly-146834 - Terrain Editor
+https://assetstore.unity.com/packages/vfx/shaders/ghostly-hand-shader-free-vr-212412 - Ghostly Hands Shaders
