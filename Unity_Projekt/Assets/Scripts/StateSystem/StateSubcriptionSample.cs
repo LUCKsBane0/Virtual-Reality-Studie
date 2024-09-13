@@ -14,7 +14,7 @@ public class StateSubcriptionSample : MonoBehaviour
     private void OnDisable()
     {
         // Unsubscribe from the state change event to avoid memory leaks
-        FindObjectOfType<StateSystem>().OnStateChanged -= HandleStateChanged;
+        //FindObjectOfType<StateSystem>().OnStateChanged -= HandleStateChanged;
     }
 
     private void HandleStateChanged(StateSystem.State newState)
@@ -23,7 +23,7 @@ public class StateSubcriptionSample : MonoBehaviour
         if (newState == StateSystem.State.SurpassedLine)
         {
             Debug.Log("Surpassed the line!");
-            GameObject.Find("Text").GetComponent<TextMeshProUGUI>().SetText("Current State: " + newState.ToString());
+            transform.Find("Canvas").Find("Text").GetComponent<TextMeshProUGUI>().SetText("Current State: " + newState.ToString());
         }
     }
     // Start is called before the first frame update
