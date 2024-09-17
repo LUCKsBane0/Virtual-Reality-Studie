@@ -1,45 +1,51 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals;
 
 public class SignInteraction : MonoBehaviour
 {
-    public GameObject uiPanel;         // Assign your UI panel in the Inspector
-    public Transform player;           // Assign the player's transform
-    public Vector3 panelOffset = new Vector3(0f, 1.5f, 2f); // Offset for the UI Panel position
-
-    private XRBaseInteractor interactor; // To reference the Ray Interactor
-
+    private GameObject uiPanel;
+    public XRInteractorLineVisual lineRenderer;
     private void Start()
     {
+        uiPanel = this.gameObject;
         // Hide the UI panel initially
         if (uiPanel != null)
         {
             uiPanel.SetActive(false);
         }
 
-        // Optionally, find the Ray Interactor if needed
-        interactor = FindObjectOfType<XRRayInteractor>();
+      
+  
     }
 
+    
+
+    public void hideRaycast()
+    {
+        lineRenderer.enabled = false;
+    }
+
+    public void showRaycast()
+    {
+        lineRenderer.enabled = true;
+    }
     // This method will be called when the wooden sign is clicked
     public void OnSelectEntered()
     {
-        ShowUIPanel();
-    }
-
-    private void ShowUIPanel()
-    {
-        if (uiPanel != null && player != null)
+        if (uiPanel != null)
         {
-            // Position the UI panel in front of the player
-            uiPanel.transform.position = player.position + player.forward * panelOffset.z + new Vector3(0f, panelOffset.y, 0f);
-
-            // Rotate the panel to face the player
-            uiPanel.transform.LookAt(player);
-
             // Show the UI panel
             uiPanel.SetActive(true);
         }
     }
+    public void OnSelectExit()
+    {
+        uiPanel.SetActive(false);
+
+    }
+
+    
 }
