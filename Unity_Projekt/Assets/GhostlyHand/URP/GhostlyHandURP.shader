@@ -13,7 +13,8 @@ Shader "GhostlyHandURP"
 		_Point2("Point2", Float) = 1
 		_Point3("Point3", Float) = 1
 		[ASEEnd]_WristOpacity("WristOpacity", Range( 0 , 1)) = 1
-
+		 _UseBackgroundColor("Use Background Color", Float) = 0 // Toggle to switch between normal and background color
+		_BackgroundColor("Background Color", Color) = (1,1,1,1) // Default to white
 		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
 		//_TessValue( "Tess Max Tessellation", Range( 1, 32 ) ) = 16
 		//_TessMin( "Tess Min Distance", Float ) = 10
