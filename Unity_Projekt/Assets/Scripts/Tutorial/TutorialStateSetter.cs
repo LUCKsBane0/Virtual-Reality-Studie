@@ -1,56 +1,75 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class TutorialStateSetter : MonoBehaviour
 {
     [System.Serializable]
     public class StateTransition
     {
-        public TutorialStateSystem.TutorialState currentState;  // The current state to check
-        public TutorialStateSystem.TutorialState newState;      // The new state to set if the condition is met
-        public UnityEvent<bool> condition;                      // UnityEvent to evaluate the condition
+        public TutorialStateSystem.TutorialState previousState; // The state to transition from
+        public TutorialStateSystem.TutorialState targetState;   // The state to transition to
     }
 
-    public List<StateTransition> stateTransitions;              // List of state transitions
-    private TutorialStateSystem tutorialStateSystem;            // Reference to the state system
+    [System.Serializable]
+    public class StateCondition
+    {
+        public Trigger trigger;  // Reference to the Trigger component
+        public List<StateTransition> stateTransitions = new List<StateTransition>(); // List of state transitions (previous -> target)
+    }
+
+    [Header("State System")]
+    public List<StateCondition> stateConditions = new List<StateCondition>(); // List of conditions and transitions
+
+    private TutorialStateSystem tutorialStateSystem;  // Reference to the state system
 
     private void Start()
     {
+        // Find the TutorialStateSystem in the scene
         tutorialStateSystem = FindObjectOfType<TutorialStateSystem>();
-
         if (tutorialStateSystem == null)
         {
             Debug.LogError("TutorialStateSystem not found in the scene.");
         }
-    }
 
-    // Call this method to evaluate conditions and set states
-    public void CheckAndSetState()
-    {
-        foreach (var transition in stateTransitions)
+        // Subscribe to the OnTargetMet event of each Trigger
+        foreach (var stateCondition in stateConditions)
         {
-            // Check if the current state matches
-            if (tutorialStateSystem.currentState == transition.currentState)
+            if (stateCondition.trigger != null)
             {
-                // Set up a bool that will be passed as a condition
-                bool isConditionMet = false;
-
-                // Invoke the condition to get the result
-                transition.condition.Invoke(isConditionMet);
-
-                if (isConditionMet) // If condition is met, change state
-                {
-                    SetNewState(transition.newState);
-                    break; // Stop after the first valid transition
-                }
+                stateCondition.trigger.OnTargetMet.AddListener(() => OnConditionMet(stateCondition));
             }
         }
     }
 
-    private void SetNewState(TutorialStateSystem.TutorialState newState)
+    private void OnDestroy()
     {
-        tutorialStateSystem.SetState(newState);
-        Debug.Log($"State changed to: {newState}");
+        // Unsubscribe from the events to avoid memory leaks
+        foreach (var stateCondition in stateConditions)
+        {
+            if (stateCondition.trigger != null)
+            {
+                stateCondition.trigger.OnTargetMet.RemoveListener(() => OnConditionMet(stateCondition));
+            }
+        }
+    }
+
+    private void OnConditionMet(StateCondition stateCondition)
+    {
+        // Get the current state of the system
+        var currentState = tutorialStateSystem.currentState;
+
+        // Check each transition to see if it matches the current state
+        foreach (var transition in stateCondition.stateTransitions)
+        {
+            if (transition.previousState == currentState)
+            {
+                // If a match is found, transition to the target state
+                tutorialStateSystem.SetState(transition.targetState);
+                Debug.Log($"State changed from {transition.previousState} to {transition.targetState}");
+                return; // Exit once the state is changed
+            }
+        }
+        
+        Debug.LogWarning($"No valid transition found from state {currentState}");
     }
 }
