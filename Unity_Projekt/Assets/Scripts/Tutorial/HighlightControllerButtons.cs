@@ -4,8 +4,8 @@ using UnityEngine;
 public class HighlightControllerButtons : MonoBehaviour
 {
     [Header("Materials")]
-    public Material originalMaterial;    // Original material
-    public Material highlightMaterial;   // Highlight material
+    public Material originalMaterial;    // Original material (static for all buttons)
+    public Material highlightMaterial;   // Base highlight material (will be copied for each button)
 
     [Header("Controller Button Objects")]
     public Renderer leftTriggerRenderer;  // Renderer for the left trigger button
@@ -20,12 +20,16 @@ public class HighlightControllerButtons : MonoBehaviour
     [Header("Settings")]
     public float fadeDuration = 1f;       // Duration of the fade animation
 
-    private Coroutine currentCoroutine;
+    // Track separate coroutines for each button
+    private Coroutine leftTriggerCoroutine;
+    private Coroutine leftGripCoroutine;
+    private Coroutine rightTriggerCoroutine;
+    private Coroutine rightGripCoroutine;
 
     private void Start()
     {
-        // Reset both materials' color to gray at the start
-        ResetMaterialColors();
+        Debug.Log("Starting HighlightControllerButtons script...");
+        ResetMaterialColors();  // Reset the colors at the start
     }
 
     public void HighlightButton(string buttonName)
@@ -33,14 +37,19 @@ public class HighlightControllerButtons : MonoBehaviour
         Renderer buttonRenderer = GetButtonRenderer(buttonName);
         if (buttonRenderer != null)
         {
-            if (currentCoroutine != null)
-            {
-                StopCoroutine(currentCoroutine);
-            }
+            Debug.Log($"HighlightButton called for {buttonRenderer.name}");
+            StopAndResetCoroutine(buttonName);  // Stop any running coroutine for the button
 
-            // Set the highlight material and start fading to the highlight color
-            buttonRenderer.material = highlightMaterial;
-            currentCoroutine = StartCoroutine(FadeToColor(buttonRenderer, highlightColor));
+            // Create a new instance of the highlight material
+            Material newHighlightMaterial = new Material(highlightMaterial);
+            newHighlightMaterial.color = highlightColor; // Set the highlight color
+
+            // Set the new material to the button
+            buttonRenderer.material = newHighlightMaterial;
+            Debug.Log($"Highlight material applied to {buttonRenderer.name}");
+
+            // Start the fade-in animation
+            StartFadeCoroutine(buttonName, buttonRenderer, highlightColor, newHighlightMaterial);
         }
     }
 
@@ -49,19 +58,17 @@ public class HighlightControllerButtons : MonoBehaviour
         Renderer buttonRenderer = GetButtonRenderer(buttonName);
         if (buttonRenderer != null)
         {
-            if (currentCoroutine != null)
-            {
-                StopCoroutine(currentCoroutine);
-            }
+            Debug.Log($"RemoveHighlight called for {buttonRenderer.name}");
+            StopAndResetCoroutine(buttonName);  // Stop any running coroutine for the button
 
-            // Set the original material and reset to the original color
-            currentCoroutine = StartCoroutine(FadeToColor(buttonRenderer, resetColor, true));
+            // Start the fade-out animation
+            StartFadeCoroutine(buttonName, buttonRenderer, resetColor, null, true);
         }
     }
 
     private void ResetMaterialColors()
     {
-        // Set both the original and highlight materials to the resetColor at start
+        Debug.Log("Resetting material colors to resetColor");
         originalMaterial.color = resetColor;
         highlightMaterial.color = resetColor;
     }
@@ -70,42 +77,117 @@ public class HighlightControllerButtons : MonoBehaviour
     {
         switch (buttonName)
         {
-            case "LeftTrigger":
-                return leftTriggerRenderer;
-            case "LeftGrip":
-                return leftGripRenderer;
-            case "RightTrigger":
-                return rightTriggerRenderer;
-            case "RightGrip":
-                return rightGripRenderer;
-            default:
-                return null;
+            case "LeftTrigger": return leftTriggerRenderer;
+            case "LeftGrip": return leftGripRenderer;
+            case "RightTrigger": return rightTriggerRenderer;
+            case "RightGrip": return rightGripRenderer;
+            default: return null;
         }
     }
 
-    // Coroutine to fade the highlight material, then switch back to the original material
-    private IEnumerator FadeToColor(Renderer renderer, Color targetColor, bool resetToOriginal = false)
+    // Start fade coroutine for a specific button
+    private void StartFadeCoroutine(string buttonName, Renderer buttonRenderer, Color targetColor, Material tempHighlightMaterial = null, bool resetToOriginal = false)
     {
-        Material buttonMaterial = renderer.material; // This will create a unique instance of the material for this renderer
-        Color startColor = buttonMaterial.color;     // Get the current color
+        Coroutine fadeCoroutine = null;
+
+        switch (buttonName)
+        {
+            case "LeftTrigger":
+                leftTriggerCoroutine = StartCoroutine(FadeToColor(buttonRenderer, targetColor, tempHighlightMaterial, resetToOriginal));
+                fadeCoroutine = leftTriggerCoroutine;
+                break;
+            case "LeftGrip":
+                leftGripCoroutine = StartCoroutine(FadeToColor(buttonRenderer, targetColor, tempHighlightMaterial, resetToOriginal));
+                fadeCoroutine = leftGripCoroutine;
+                break;
+            case "RightTrigger":
+                rightTriggerCoroutine = StartCoroutine(FadeToColor(buttonRenderer, targetColor, tempHighlightMaterial, resetToOriginal));
+                fadeCoroutine = rightTriggerCoroutine;
+                break;
+            case "RightGrip":
+                rightGripCoroutine = StartCoroutine(FadeToColor(buttonRenderer, targetColor, tempHighlightMaterial, resetToOriginal));
+                fadeCoroutine = rightGripCoroutine;
+                break;
+        }
+
+        Debug.Log($"Started fade coroutine for {buttonRenderer.name}, Coroutine: {fadeCoroutine}");
+    }
+
+    // Stop any running coroutine for the button
+    private void StopAndResetCoroutine(string buttonName)
+    {
+        switch (buttonName)
+        {
+            case "LeftTrigger":
+                if (leftTriggerCoroutine != null)
+                {
+                    Debug.Log("Stopping leftTriggerCoroutine");
+                    StopCoroutine(leftTriggerCoroutine);
+                    leftTriggerCoroutine = null;
+                }
+                break;
+            case "LeftGrip":
+                if (leftGripCoroutine != null)
+                {
+                    Debug.Log("Stopping leftGripCoroutine");
+                    StopCoroutine(leftGripCoroutine);
+                    leftGripCoroutine = null;
+                }
+                break;
+            case "RightTrigger":
+                if (rightTriggerCoroutine != null)
+                {
+                    Debug.Log("Stopping rightTriggerCoroutine");
+                    StopCoroutine(rightTriggerCoroutine);
+                    rightTriggerCoroutine = null;
+                }
+                break;
+            case "RightGrip":
+                if (rightGripCoroutine != null)
+                {
+                    Debug.Log("Stopping rightGripCoroutine");
+                    StopCoroutine(rightGripCoroutine);
+                    rightGripCoroutine = null;
+                }
+                break;
+        }
+    }
+
+    // Coroutine to fade the material color, then switch back to the original material
+    private IEnumerator FadeToColor(Renderer renderer, Color targetColor, Material tempHighlightMaterial = null, bool resetToOriginal = false)
+    {
+        Debug.Log($"FadeToColor coroutine started for {renderer.name}");
+        Material buttonMaterial = renderer.material;  // Get the current material
+        Color startColor = buttonMaterial.color;      // Get the current color
         float elapsedTime = 0f;
+
+        Debug.Log($"Starting fade from {startColor} to {targetColor} for {renderer.name}");
 
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
-            // Gradually fade the color to the target color
             buttonMaterial.color = Color.Lerp(startColor, targetColor, elapsedTime / fadeDuration);
+            Debug.Log($"Fading {renderer.name}: {buttonMaterial.color}");
             yield return null;
         }
 
         // Ensure the final color is set exactly
         buttonMaterial.color = targetColor;
+        Debug.Log($"Fade complete for {renderer.name}, target color: {targetColor}");
 
-        // If resetting to the original material, set the material back to the originalMaterial
+        // If resetting to the original material, switch back to the original and reset color
         if (resetToOriginal)
         {
+            Debug.Log($"Resetting {renderer.name} to original material and color {resetColor}");
             renderer.material = originalMaterial;
-            ResetMaterialColors(); // Reset colors after highlight removal
+            renderer.material.color = resetColor;
+        }
+
+        // Clean up the temporary highlight material
+        if (tempHighlightMaterial != null && !resetToOriginal)
+        {
+            Debug.Log($"Destroying temporary highlight material for {renderer.name}");
+            Destroy(tempHighlightMaterial);
         }
     }
 }

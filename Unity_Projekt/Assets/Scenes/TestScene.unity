@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 53396480}
   - component: {fileID: 53396482}
   - component: {fileID: 53396481}
+  - component: {fileID: 53396483}
   m_Layer: 0
   m_Name: ControllerText 1
   m_TagString: Untagged
@@ -260,6 +261,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53396479}
   m_CullTransparentMesh: 1
+--- !u!114 &53396483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53396479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14cbb8691a07924fa75802fc2052d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateActions:
+  - state: 6
+    onStateEntered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 614372479}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1166513724}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 53396479}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1525298552}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 236603742}
+          m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 236603741}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!1 &58815710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4305,6 +4395,8 @@ GameObject:
   - component: {fileID: 1166513728}
   - component: {fileID: 1166513727}
   - component: {fileID: 1166513726}
+  - component: {fileID: 1166513732}
+  - component: {fileID: 1166513731}
   m_Layer: 0
   m_Name: TestButton1
   m_TagString: Untagged
@@ -4434,7 +4526,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1166513729}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1166513732}
+        m_TargetAssemblyTypeName: Trigger, Assembly-CSharp
+        m_MethodName: TriggerTargetMet_DO_USE_WITH_CARE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1166513729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4473,6 +4577,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166513724}
   m_CullTransparentMesh: 1
+--- !u!114 &1166513731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166513724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec74b2c73e28b18dab905644a5dd918f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateConditions:
+  - trigger: {fileID: 1166513732}
+    stateTransitions:
+    - previousState: 7
+      targetState: 8
+--- !u!114 &1166513732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166513724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e0529475e837d8780fb600f59f88e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTargetMet:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1167776163 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5662787682865524914, guid: 244168b00bb52b245aa615ed28912962, type: 3}
@@ -4495,7 +4631,7 @@ GameObject:
   - component: {fileID: 1213170206}
   - component: {fileID: 1213170208}
   - component: {fileID: 1213170207}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5236,11 +5372,35 @@ MonoBehaviour:
             m_StringArgument: RightTrigger
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1633978747}
+          m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+          m_MethodName: TriggerRumble
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: RightTrigger
+            m_BoolArgument: 0
+          m_CallState: 2
   - state: 5
     onStateEntered:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 364041158}
+          m_TargetAssemblyTypeName: HighlightControllerButtons, Assembly-CSharp
+          m_MethodName: RemoveHighlight
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: RightGrip
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1523927358}
           m_TargetAssemblyTypeName: HighlightControllerButtons, Assembly-CSharp
           m_MethodName: RemoveHighlight
           m_Mode: 5
@@ -5830,6 +5990,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+--- !u!1 &1633978742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1723205065091305591, guid: 244168b00bb52b245aa615ed28912962, type: 3}
+  m_PrefabInstance: {fileID: 7935066916398863775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1633978747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633978742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9546dbd29355f4d459b7a20c6ef41b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerNode: 5
+  intensity: 0.5
+  numberOfRumbles: 3
+  durationPerRumble: 0.2
 --- !u!1 &1651105552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8758423527188247893, guid: 1392f805216c47742996d4742c80721c, type: 3}
@@ -5954,6 +6135,18 @@ MonoBehaviour:
             m_StringArgument: LeftTrigger
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1745532334}
+          m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+          m_MethodName: TriggerRumble
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: LeftTrigger
+            m_BoolArgument: 0
+          m_CallState: 2
   - state: 6
     onStateEntered:
       m_PersistentCalls:
@@ -5962,6 +6155,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: HighlightControllerButtons, Assembly-CSharp
           m_MethodName: RemoveHighlight
           m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: LeftGrip
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1745532334}
+          m_TargetAssemblyTypeName: RumbleController, Assembly-CSharp
+          m_MethodName: TriggerRumble
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6200,6 +6405,27 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1745532329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1181067817222212696, guid: 244168b00bb52b245aa615ed28912962, type: 3}
+  m_PrefabInstance: {fileID: 7935066916398863775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1745532334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9546dbd29355f4d459b7a20c6ef41b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerNode: 4
+  intensity: 0.5
+  numberOfRumbles: 2
+  durationPerRumble: 0.2
 --- !u!1001 &1794147304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7362,7 +7588,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5675104112926565076, guid: 244168b00bb52b245aa615ed28912962, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1943933537}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1181067817222212696, guid: 244168b00bb52b245aa615ed28912962, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1745532334}
+    - targetCorrespondingSourceObject: {fileID: 1723205065091305591, guid: 244168b00bb52b245aa615ed28912962, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1633978747}
   m_SourcePrefab: {fileID: 100100000, guid: 244168b00bb52b245aa615ed28912962, type: 3}
 --- !u!20 &7935066916398863776 stripped
 Camera:

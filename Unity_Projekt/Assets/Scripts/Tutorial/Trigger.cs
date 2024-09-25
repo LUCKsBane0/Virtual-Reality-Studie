@@ -11,4 +11,9 @@ public class Trigger : MonoBehaviour
     {
         OnTargetMet?.Invoke();
     }
+    public void TriggerTargetMet_DO_USE_WITH_CARE()
+    {
+        OnTargetMet?.Invoke();
+        Debug.LogWarning("Used TriggerTargetMet without a ChildClass of Trigger on Object: " + gameObject.name);
+    }
 }
