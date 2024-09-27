@@ -7,3 +7,5 @@ https://assetstore.unity.com/packages/3d/vegetation/trees/snowy-low-poly-trees-7
 https://assetstore.unity.com/packages/tools/terrain/terrain-creator-low-poly-146834 - Terrain Editor
 https://assetstore.unity.com/packages/vfx/shaders/ghostly-hand-shader-free-vr-212412 - Ghostly Hands Shaders
 https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488 - Outline
+https://assetstore.unity.com/packages/2d/textures-materials/50-free-pbr-materials-242760 Materials
+https://assetstore.unity.com/packages/vfx/particles/cool-visual-effects-part-1-urp-support-176571 - Visual Effects

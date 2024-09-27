@@ -474,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LineWidth: 0.005
   m_OverrideInteractorLineLength: 1
-  m_LineLength: 10
+  m_LineLength: 12
   m_AutoAdjustLineLength: 0
   m_MinLineLength: 0.5
   m_UseDistanceToHitAsMaxLineLength: 1
@@ -1785,7 +1785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2689756588707633179
 Transform:
   m_ObjectHideFlags: 0
@@ -2033,7 +2033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fa5e6bd3ca4bf4c9ed93959dbce900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enable: 1
+  enable: 0
   movementThreshold: 0.008
   movementSpeed: 0.02
   leftHandNode: 4
@@ -2904,7 +2904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5623034063319241628
 Transform:
   m_ObjectHideFlags: 0
