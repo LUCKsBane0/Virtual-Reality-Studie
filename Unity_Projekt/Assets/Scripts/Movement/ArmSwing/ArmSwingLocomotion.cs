@@ -6,9 +6,12 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 public class ArmSwingLocomotion : MonoBehaviour
 {
     [Header("Locomotion Settings")]
-    public bool enable = true;            // Enable/disable arm-swing locomotion
-    public float movementThreshold = 0.01f; // Minimum hand movement required to trigger locomotion
-    public float movementSpeed = 5.0f;     // Fixed movement speed when threshold is met
+    public bool enable = true;                // Enable/disable arm-swing locomotion
+    public float movementThreshold = 0.01f;   // Minimum hand movement speed required to trigger locomotion
+    public float movementSpeed = 5.0f;        // Fixed movement speed when threshold is met
+    public float armSpeedThreshold = 0.05f;   // Speed threshold for individual arm movement
+    public float movementBufferDuration = 0.5f; // Buffer duration for continuous movement
+    public float gravity = -9.81f;            // Gravity value
 
     [Header("References")]
     public XRNode leftHandNode = XRNode.LeftHand;   // Left hand input
@@ -17,8 +20,11 @@ public class ArmSwingLocomotion : MonoBehaviour
     public Transform cameraTransform; // Reference to the main camera (headset)
     public ContinuousMoveProvider continuousMoveProvider; // Stick-based movement provider
 
-    private Vector3 leftHandPreviousPosition;        // Previous position of the left hand
-    private Vector3 rightHandPreviousPosition;       // Previous position of the right hand
+    private Vector3 leftHandPreviousPosition;  // Previous position of the left hand
+    private Vector3 rightHandPreviousPosition; // Previous position of the right hand
+
+    private Vector3 playerVelocity;            // Player's vertical velocity (for gravity)
+    private float movementBuffer;              // Buffer timer for continuous movement
 
     private void Start()
     {
@@ -36,27 +42,14 @@ public class ArmSwingLocomotion : MonoBehaviour
     {
         if (enable)
         {
-            // Disable stick-based movement when arm-swing locomotion is enabled
-            if (continuousMoveProvider != null)
-            {
-                continuousMoveProvider.enabled = false;
-            }
-
             ArmSwingMovement();
         }
-        else
-        {
-            // Re-enable stick-based movement when arm-swing is disabled
-            if (continuousMoveProvider != null)
-            {
-                continuousMoveProvider.enabled = true;
-            }
-        }
+
+        ApplyGravity(); // Always apply gravity regardless of arm-swing locomotion
     }
 
     private void ArmSwingMovement()
     {
-        
         // Get the current hand positions
         Vector3 leftHandCurrentPosition = GetControllerPosition(leftHandNode);
         Vector3 rightHandCurrentPosition = GetControllerPosition(rightHandNode);
@@ -65,27 +58,61 @@ public class ArmSwingLocomotion : MonoBehaviour
         Vector3 leftHandMovement = leftHandCurrentPosition - leftHandPreviousPosition;
         Vector3 rightHandMovement = rightHandCurrentPosition - rightHandPreviousPosition;
 
-        // Average the movement of both hands
-        float handMovement = (Mathf.Abs(leftHandMovement.y) + Mathf.Abs(rightHandMovement.y));
-
-        // Check if the hand movement meets the threshold
-        if (handMovement > movementThreshold) // If hands move enough on the y-axis
+        // Check if both arms are moving in opposite directions (up and down) and at a speed greater than the threshold
+        if (Mathf.Abs(leftHandMovement.y) > armSpeedThreshold && Mathf.Abs(rightHandMovement.y) > armSpeedThreshold)
         {
-            // Get the forward direction from the player's camera (ignoring vertical rotation)
+            // Add both arm movements' y components together
+            float combinedYMovement = leftHandMovement.y + rightHandMovement.y;
+
+            // If combined Y movement is close to zero (arms moving opposite to each other), trigger locomotion
+            if (Mathf.Abs(combinedYMovement) < movementThreshold)
+            {
+                // Get the forward direction from the player's camera (ignoring vertical rotation)
+                Vector3 movementDirection = cameraTransform.forward;
+                movementDirection.y = 0; // Keep movement horizontal
+                movementDirection.Normalize();
+
+                // Apply movement at a constant speed
+                characterController.Move(movementDirection * movementSpeed * Time.deltaTime);
+
+                // Set buffer timer to keep moving
+                movementBuffer = movementBufferDuration;
+
+                Debug.Log($"Moving in direction: {movementDirection}");
+            }
+        }
+
+        // Continue movement during the buffer period
+        if (movementBuffer > 0)
+        {
             Vector3 movementDirection = cameraTransform.forward;
-            movementDirection.y = 0; // Keep movement horizontal
+            movementDirection.y = 0;
             movementDirection.Normalize();
 
-            // Apply movement at a constant speed
-            characterController.Move(movementDirection * movementSpeed);
-
-            // Print the movement direction to the console
-            Debug.Log($"Moving in direction: {movementDirection}");
+            characterController.Move(movementDirection * movementSpeed * Time.deltaTime);
+            movementBuffer -= Time.deltaTime;
         }
 
         // Update previous hand positions
         leftHandPreviousPosition = leftHandCurrentPosition;
         rightHandPreviousPosition = rightHandCurrentPosition;
+    }
+
+    private void ApplyGravity()
+    {
+        // Check if the player is grounded
+        if (characterController.isGrounded)
+        {
+            playerVelocity.y = 0f; // Reset vertical velocity if grounded
+        }
+        else
+        {
+            // Apply gravity to vertical velocity
+            playerVelocity.y += gravity * Time.deltaTime;
+        }
+
+        // Apply gravity using the CharacterController
+        characterController.Move(playerVelocity * Time.deltaTime);
     }
 
     // Method to get the controller position using InputDevices and CommonUsages.devicePosition
