@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TutorialStateSystem : MonoBehaviour
 { public enum TutorialState { Start,LookAroundLeft, LookAroundRight, ControllerTR,ControllerTL,ControllerGR,ControllerGL,RayButton,Rayslider,
-RayHands,Movement,End,SurpassedDoor}
+RayHands,Movement1,Movement2,End,SurpassedDoor}
 
     // Store the current state
     public TutorialState currentState;
