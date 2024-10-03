@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PersonData", menuName = "ScriptableObjects/StudienTeilnehmer", order = 1)]
 public class StudienTeilnehmer:ScriptableObject
 {
-    public string Name;
+    public string ID;
     public int Alter;
     public string Geschlecht;
     public bool VR_Erfahrung;

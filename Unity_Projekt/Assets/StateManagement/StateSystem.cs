@@ -7,7 +7,7 @@ public class StateSystem : MonoBehaviour
 {
     public enum State
     {
-        Start
+        Start,Questionaire_QAGE, Questionaire_QGENDER, Questionaire_QVR, Questionaire_QGAMING, END
     }
 
     // Store the current state

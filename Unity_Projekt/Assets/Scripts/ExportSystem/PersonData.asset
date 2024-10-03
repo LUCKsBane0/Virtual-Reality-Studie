@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd98524c07d5ab9a29184369f5d77406, type: 3}
   m_Name: PersonData
   m_EditorClassIdentifier: 
-  Name: TestName
+  ID: 1
   Alter: 21
   Geschlecht: "M\xE4nnlich"
   VR_Erfahrung: 0
