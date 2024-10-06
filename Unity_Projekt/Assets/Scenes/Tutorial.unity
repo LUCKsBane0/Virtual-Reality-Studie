@@ -2910,8 +2910,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - poolName: Pool
-    sceneAssets:
-    - {fileID: 102900000, guid: 682bc1af4ff03644d9c66dd96641a568, type: 3}
+    sceneNames:
+    - Szenario_1
 --- !u!114 &1852718709
 MonoBehaviour:
   m_ObjectHideFlags: 0
