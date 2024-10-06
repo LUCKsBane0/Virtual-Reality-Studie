@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor; // Required for SceneAsset
 
 public class SceneManagerPersistent : MonoBehaviour
 {
@@ -10,6 +8,17 @@ public class SceneManagerPersistent : MonoBehaviour
     public List<ScenePool> pools; // List of scene pools that can be modified in the inspector
 
     private static SceneManagerPersistent instance;
+
+    // Singleton getter
+    public static SceneManagerPersistent getInstance()
+    {
+        if (instance == null)
+        {
+            Debug.LogError("No Instance found!");
+            return null;
+        }
+        return instance;
+    }
 
     private void Awake()
     {
@@ -45,7 +54,7 @@ public class SceneManagerPersistent : MonoBehaviour
         // Find the pool by name
         ScenePool selectedPool = pools.Find(pool => pool.poolName == poolName);
 
-        if (selectedPool != null && selectedPool.sceneAssets.Count > 0)
+        if (selectedPool != null && selectedPool.sceneNames.Count > 0)
         {
             // Pick a random scene from the pool
             string randomScene = selectedPool.GetRandomSceneName();
@@ -64,15 +73,14 @@ public class SceneManagerPersistent : MonoBehaviour
 public class ScenePool
 {
     public string poolName;                 // Name of the pool
-    public List<SceneAsset> sceneAssets;    // List of SceneAsset references
+    public List<string> sceneNames;         // List of scene names (strings)
 
-    // Get the scene name from the SceneAsset (used for runtime scene loading)
+    // Get the scene name from the list of strings
     public string GetRandomSceneName()
     {
-        if (sceneAssets.Count == 0) return null;
+        if (sceneNames.Count == 0) return null;
 
-        // Get a random SceneAsset and return its scene name
-        SceneAsset randomSceneAsset = sceneAssets[Random.Range(0, sceneAssets.Count)];
-        return randomSceneAsset.name; // Use the scene name
+        // Get a random scene name
+        return sceneNames[Random.Range(0, sceneNames.Count)];
     }
 }

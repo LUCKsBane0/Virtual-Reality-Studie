@@ -37,12 +37,12 @@ public class SceneManagerEditorWindow : EditorWindow
             EditorGUILayout.LabelField($"Pool: {pool.poolName}", EditorStyles.boldLabel);
 
             // Display a list of scenes within the pool
-            foreach (var sceneAsset in pool.sceneAssets)
+            foreach (var sceneName in pool.sceneNames)  // Use sceneNames instead of sceneAssets
             {
                 // Each scene has a button to load it
-                if (GUILayout.Button($"Load {sceneAsset.name}"))
+                if (GUILayout.Button($"Load {sceneName}"))
                 {
-                    LoadScene(sceneAsset.name);
+                    LoadScene(sceneName);
                 }
             }
 

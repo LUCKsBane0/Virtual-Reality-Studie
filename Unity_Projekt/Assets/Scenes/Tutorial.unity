@@ -96,8 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 2e9d2c45484a0094ba35a03da080a315, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 76f746e9f6f6e464fb6c803f14e6dfd2, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1505,6 +1505,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1608323735}
+    - target: {fileID: 2073844628619225139, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+      propertyPath: m_text
+      value: "Willkommen bei der VR-Studie f\xFCr Risikobereitschaft in Virtual Reality!\nBitte
+        stelle sicher, dass das Headset richtig konfiguriert wurde. \nSolltest du
+        diesen Text lesen k\xF6nnen, ist die Sch\xE4rfe richtig eingestellt.\nWir
+        beginnen nun mit einem kleinen Tutorial zur Interaktion und Bewegung in VR.
+        Unten siehst du die aktuelle Aufgabe. Viel gl\xFCck!"
+      objectReference: {fileID: 0}
     - target: {fileID: 2137739729524337919, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1805,6 +1813,12 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7292253141285560397, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+      propertyPath: m_text
+      value: "Das ist ein Testschild. Die Umgebung wird verdunkelt um eine bessere
+        Lesbarkeit zu gew\xE4hrleisten. Dr\xFCcke auf den roten Knopf um dieses Fenster
+        zu schlie\xDFen. Laufe jetzt durch die T\xFCr."
+      objectReference: {fileID: 0}
     - target: {fileID: 7547479020827737641, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1931,9 +1945,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3842362341517106231, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1966545440}
-    - targetCorrespondingSourceObject: {fileID: 3842362341517106231, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1852718707}
     - targetCorrespondingSourceObject: {fileID: 3842362341517106231, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       insertIndex: -1
       addedObject: {fileID: 942811808}
@@ -2879,11 +2890,11 @@ Transform:
   m_GameObject: {fileID: 1852718706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -57.234055, y: -10.268469, z: -2.6665173}
+  m_LocalPosition: {x: -35.277824, y: -10.268469, z: -30.41178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1868935313}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1852718708
 MonoBehaviour:
@@ -2898,9 +2909,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - poolName: ABC
-    sceneAssets:
-    - {fileID: 102900000, guid: 682bc1af4ff03644d9c66dd96641a568, type: 3}
+  - poolName: Pool
+    sceneNames:
+    - Szenario_1
 --- !u!114 &1852718709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2920,14 +2931,14 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1852718708}
           m_TargetAssemblyTypeName: SceneManagerPersistent, Assembly-CSharp
-          m_MethodName: LoadSceneFromPool
+          m_MethodName: LoadScene
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: ABC
+            m_StringArgument: Questionaire
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!4 &1868935313 stripped
@@ -3043,7 +3054,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -3074,3 +3085,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1171858914}
+  - {fileID: 1852718707}
