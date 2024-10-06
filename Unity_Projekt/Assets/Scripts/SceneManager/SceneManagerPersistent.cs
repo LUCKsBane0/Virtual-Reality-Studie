@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +9,17 @@ public class SceneManagerPersistent : MonoBehaviour
     public List<ScenePool> pools; // List of scene pools that can be modified in the inspector
 
     private static SceneManagerPersistent instance;
+
+    // Singleton getter
+    public static SceneManagerPersistent getInstance()
+    {
+        if (instance == null)
+        {
+            Debug.LogError("No Instance found!");
+            return null;
+        }
+        return instance;
+    }
 
     private void Awake()
     {
