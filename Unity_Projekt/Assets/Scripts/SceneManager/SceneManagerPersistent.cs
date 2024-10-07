@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerPersistent : MonoBehaviour
 {
+    [HideInInspector]
+    public int currentLoadedScenes;
+
     [Header("Scene Pools")]
     public List<ScenePool> pools; // List of scene pools that can be modified in the inspector
 
@@ -53,12 +56,22 @@ public class SceneManagerPersistent : MonoBehaviour
     {
         // Find the pool by name
         ScenePool selectedPool = pools.Find(pool => pool.poolName == poolName);
-
-        if (selectedPool != null && selectedPool.sceneNames.Count > 0)
+        currentLoadedScenes++;
+        if(selectedPool.maxLoadedScenes <= currentLoadedScenes)
+        {
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;  // Stop play mode in the Editor
+            #else
+                Application.Quit();  // Quit the application in a build
+            #endif
+            return;
+        }
+        else if (selectedPool != null && selectedPool.sceneNames.Count > 0)
         {
             // Pick a random scene from the pool
             string randomScene = selectedPool.GetRandomSceneName();
-
+            //Remove Scene from pool
+            selectedPool.sceneNames.Remove(randomScene);
             // Load the randomly selected scene
             LoadScene(randomScene);
         }
@@ -72,6 +85,7 @@ public class SceneManagerPersistent : MonoBehaviour
 [System.Serializable]
 public class ScenePool
 {
+    public int maxLoadedScenes;
     public string poolName;                 // Name of the pool
     public List<string> sceneNames;         // List of scene names (strings)
 

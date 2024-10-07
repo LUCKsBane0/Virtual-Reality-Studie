@@ -36,11 +36,13 @@ public class ExportSystem : MonoBehaviour
     public void SetGaming_Erfahrung(int erfahrung) => personData.Gaming_Erfahrung = erfahrung;
     public void SetStudienTyp(string typ) => personData.StudienTyp = typ;
     public void SetStudienGruppe(string gruppe) => personData.StudienGruppe = gruppe;
-    public void SetSzenarien(List<string> szenarien) => personData.Szenarien = szenarien;
-    public void SetPfad(List<string> pfad) => personData.Pfad = pfad;
-    public void SetBewertungen(List<string> bewertungen) => personData.Bewertungen = bewertungen;
-    public void SetZoegernZeiten(List<float> zoegernZeiten) => personData.Zögern_Zeiten = zoegernZeiten;
-    public void SetSzenarioZeiten(List<float> szenarioZeiten) => personData.Szenario_Zeiten = szenarioZeiten;
+
+    // Adders for lists (Szenarien, Pfad, Bewertungen, ZoegernZeiten, SzenarioZeiten)
+    public void AddSzenario(string szenario) => personData.Szenarien.Add(szenario);
+    public void AddPfad(string pfad) => personData.Pfad.Add(pfad);
+    public void AddBewertung(string bewertung) => personData.Bewertungen.Add(bewertung);
+    public void AddZoegernZeit(float zoegernZeit) => personData.Zögern_Zeiten.Add(zoegernZeit);
+    public void AddSzenarioZeit(float szenarioZeit) => personData.Szenario_Zeiten.Add(szenarioZeit);
 
     // Reset the personData to default values and generate a new ID
     public void ResetPersonData()

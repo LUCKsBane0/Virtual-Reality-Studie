@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
-
+using UnityEngine.SceneManagement;
 public class XRButtonPress : MonoBehaviour
 {
     private XRBaseInteractable interactable;
-    public SceneManagerProxy SceneManager;
+    public SceneManagerProxy SceneManagerProxy;
+    public ExportSystem exportSystem;
+    public TimeMeasurement_Global time;
     private void Awake()
     {
         interactable = GetComponent<XRBaseInteractable>();
@@ -44,7 +46,11 @@ public class XRButtonPress : MonoBehaviour
     // Your custom press logic (visual effects, sound, etc.)
     public void OnPressed()
     {
-        SceneManager.LoadSceneFromPool("pool");   
+        //PUT GLOBAL TIME
+        exportSystem.AddSzenarioZeit(time.getElapsedTime());
+        //PUT SCENE
+        exportSystem.AddSzenario(SceneManager.GetActiveScene().name);
+        SceneManagerProxy.LoadSceneFromPool("pool");   
         Debug.Log("LOADING SCENE");
     }
 

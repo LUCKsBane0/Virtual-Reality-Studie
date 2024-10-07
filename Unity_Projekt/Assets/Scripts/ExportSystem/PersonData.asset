@@ -12,25 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd98524c07d5ab9a29184369f5d77406, type: 3}
   m_Name: PersonData
   m_EditorClassIdentifier: 
-  ID: 1
-  Alter: 21
+  ID: 29a12a85-cb76-4379-807e-7ab8af9a7e09
+  Alter: 15
   Geschlecht: "M\xE4nnlich"
-  VR_Erfahrung: 0
-  Gaming_Erfahrung: 1
-  StudienTyp: Test
-  StudienGruppe: Gruppe A
-  Szenarien:
-  - ' Wald 1'
-  - Berg 3
-  Pfad:
-  - Risk 0
-  - Risk 3
-  Bewertungen:
-  - Gut
-  - Nicht Gut
-  "Z\xF6gern_Zeiten":
-  - 12.5
-  - 14.5
-  Szenario_Zeiten:
-  - 1782.23
-  - 2456.78
+  VR_Erfahrung: 2
+  Gaming_Erfahrung: 2
+  StudienTyp: 
+  StudienGruppe: 
+  Szenarien: []
+  Pfad: []
+  Bewertungen: []
+  "Z\xF6gern_Zeiten": []
+  Szenario_Zeiten: []
