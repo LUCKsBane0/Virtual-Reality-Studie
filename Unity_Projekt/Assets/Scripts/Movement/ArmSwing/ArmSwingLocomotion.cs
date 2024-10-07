@@ -25,6 +25,7 @@ public class ArmSwingLocomotion : MonoBehaviour
 
     private Vector3 playerVelocity;            // Player's vertical velocity (for gravity)
     private float movementBuffer;              // Buffer timer for continuous movement
+    private bool isMovingWithArms = false;     // Flag to track if moving by arm-swing
 
     private void Start()
     {
@@ -50,6 +51,8 @@ public class ArmSwingLocomotion : MonoBehaviour
 
     private void ArmSwingMovement()
     {
+        isMovingWithArms = false; // Reset the arm-swing movement flag
+
         // Get the current hand positions
         Vector3 leftHandCurrentPosition = GetControllerPosition(leftHandNode);
         Vector3 rightHandCurrentPosition = GetControllerPosition(rightHandNode);
@@ -75,15 +78,16 @@ public class ArmSwingLocomotion : MonoBehaviour
                 // Apply movement at a constant speed
                 characterController.Move(movementDirection * movementSpeed * Time.deltaTime);
 
-                // Set buffer timer to keep moving
+                // Set buffer timer to keep moving and mark that movement was triggered by arms
                 movementBuffer = movementBufferDuration;
+                isMovingWithArms = true;
 
                 Debug.Log($"Moving in direction: {movementDirection}");
             }
         }
 
-        // Continue movement during the buffer period
-        if (movementBuffer > 0)
+        // Continue movement during the buffer period only if not moving with arms
+        if (movementBuffer > 0 && !isMovingWithArms)
         {
             Vector3 movementDirection = cameraTransform.forward;
             movementDirection.y = 0;

@@ -2171,8 +2171,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       propertyPath: movementSpeed
-      value: 0.8
+      value: 1.8
       objectReference: {fileID: 0}
+    - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1171858920}
     - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       propertyPath: armSpeedThreshold
       value: 0.01
@@ -2182,8 +2186,16 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 1171858921}
+    - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+      propertyPath: continuousMoveProvider
+      value: 
+      objectReference: {fileID: 1171858919}
+    - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       propertyPath: movementBufferDuration
-      value: 0.25
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3093801649009593279, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       propertyPath: m_Mesh
@@ -2669,6 +2681,27 @@ MonoBehaviour:
   rightHandRay: {fileID: 1171858916}
   leftTriggerAction: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   rightTriggerAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &1171858919 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4175629034218760282, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+  m_PrefabInstance: {fileID: 1171858914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1e8c997df241c1a67045eeac79b41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1171858920 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1327634530924999029, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+  m_PrefabInstance: {fileID: 1171858914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &1171858921 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 2047807016572585906, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+  m_PrefabInstance: {fileID: 1171858914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &1197732677 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6383005152524691682, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}

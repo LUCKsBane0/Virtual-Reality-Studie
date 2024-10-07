@@ -57,7 +57,7 @@ public class SceneManagerPersistent : MonoBehaviour
         // Find the pool by name
         ScenePool selectedPool = pools.Find(pool => pool.poolName == poolName);
         currentLoadedScenes++;
-        if(selectedPool.maxLoadedScenes <= currentLoadedScenes)
+        if(selectedPool.maxLoadedScenes < currentLoadedScenes)
         {
             #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;  // Stop play mode in the Editor

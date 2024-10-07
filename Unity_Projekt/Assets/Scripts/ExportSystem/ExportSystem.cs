@@ -1,16 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class ExportSystem : MonoBehaviour
 {
     public StudienTeilnehmer personData; // Assign in Unity Inspector
     public string fileName = "personData.json";
+    public string uploadUrl = "http://localhost:3000/upload"; // URL of your local server
 
     private void Awake()
     {
-        // Ensure this object persists between scene loads
         DontDestroyOnLoad(this.gameObject);
         ResetPersonData();
     }
@@ -18,14 +19,47 @@ public class ExportSystem : MonoBehaviour
     // Method to export data from the ScriptableObject to JSON
     public void ExportData()
     {
-        // Convert the ScriptableObject data to JSON
         string json = JsonUtility.ToJson(personData, true);
-
-        // Save the JSON string to a file
         string path = Path.Combine(Application.persistentDataPath, fileName);
         File.WriteAllText(path, json);
 
         Debug.Log("Data exported to: " + path);
+    }
+
+    // Upload JSON file to a file server
+    public void UploadToServer()
+    {
+        StartCoroutine(UploadFileCoroutine());
+    }
+
+    private IEnumerator UploadFileCoroutine()
+    {
+        string path = Path.Combine(Application.persistentDataPath, fileName);
+
+        // Check if the file exists
+        if (!File.Exists(path))
+        {
+            Debug.LogError("File does not exist.");
+            yield break;
+        }
+
+        // Create a UnityWebRequest to send the file to the server
+        UnityWebRequest request = UnityWebRequest.Put(uploadUrl, File.ReadAllBytes(path));
+
+        // Set the content type to application/json
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        // Send the request and wait for it to complete
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("File upload failed: " + request.error);
+        }
+        else
+        {
+            Debug.Log("File uploaded successfully.");
+        }
     }
 
     // Setters for personData attributes
