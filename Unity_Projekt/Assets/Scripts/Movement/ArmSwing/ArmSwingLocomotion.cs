@@ -13,11 +13,16 @@ public class ArmSwingLocomotion : MonoBehaviour
     public float movementBufferDuration = 0.5f; // Buffer duration for continuous movement
     public float gravity = -9.81f;            // Gravity value
 
+    [Header("Movement Mode")]
+    public bool useArms = true;   // Whether to use arms or camera for determining movement direction
+
     [Header("References")]
     public XRNode leftHandNode = XRNode.LeftHand;   // Left hand input
     public XRNode rightHandNode = XRNode.RightHand; // Right hand input
     public CharacterController characterController;
     public Transform cameraTransform; // Reference to the main camera (headset)
+    public Transform leftControllerTransform;   // Reference to the left controller (set manually or via script)
+    public Transform rightControllerTransform;  // Reference to the right controller (set manually or via script)
     public ContinuousMoveProvider continuousMoveProvider; // Stick-based movement provider
 
     private Vector3 leftHandPreviousPosition;  // Previous position of the left hand
@@ -70,8 +75,8 @@ public class ArmSwingLocomotion : MonoBehaviour
             // If combined Y movement is close to zero (arms moving opposite to each other), trigger locomotion
             if (Mathf.Abs(combinedYMovement) < movementThreshold)
             {
-                // Get the forward direction from the player's camera (ignoring vertical rotation)
-                Vector3 movementDirection = cameraTransform.forward;
+                // Decide movement direction based on the mode (useArms or camera-based)
+                Vector3 movementDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
                 movementDirection.y = 0; // Keep movement horizontal
                 movementDirection.Normalize();
 
@@ -89,7 +94,7 @@ public class ArmSwingLocomotion : MonoBehaviour
         // Continue movement during the buffer period only if not moving with arms
         if (movementBuffer > 0 && !isMovingWithArms)
         {
-            Vector3 movementDirection = cameraTransform.forward;
+            Vector3 movementDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
             movementDirection.y = 0;
             movementDirection.Normalize();
 
@@ -117,6 +122,34 @@ public class ArmSwingLocomotion : MonoBehaviour
 
         // Apply gravity using the CharacterController
         characterController.Move(playerVelocity * Time.deltaTime);
+    }
+
+    // Method to get the average forward direction from both controllers
+    private Vector3 GetCombinedControllerForwardDirection()
+    {
+        if (leftControllerTransform != null && rightControllerTransform != null)
+        {
+            // Average the forward directions of both controllers
+            Vector3 combinedDirection = (leftControllerTransform.forward + rightControllerTransform.forward) / 2;
+            return combinedDirection;
+        }
+        else if (leftControllerTransform != null)
+        {
+            return leftControllerTransform.forward;
+        }
+        else if (rightControllerTransform != null)
+        {
+            return rightControllerTransform.forward;
+        }
+
+        // Default to no movement if both controllers are unavailable
+        return Vector3.zero;
+    }
+
+    // Method to get the forward direction from the camera
+    private Vector3 GetCameraForwardDirection()
+    {
+        return cameraTransform.forward;
     }
 
     // Method to get the controller position using InputDevices and CommonUsages.devicePosition

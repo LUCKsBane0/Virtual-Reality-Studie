@@ -414,8 +414,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2036,6 +2045,9 @@ MonoBehaviour:
   enable: 0
   movementThreshold: 0.008
   movementSpeed: 0.02
+  armSpeedThreshold: 0.05
+  movementBufferDuration: 0.5
+  gravity: -9.81
   leftHandNode: 4
   rightHandNode: 5
   characterController: {fileID: 7714620803049725786}

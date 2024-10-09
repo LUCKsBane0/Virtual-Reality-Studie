@@ -1357,6 +1357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personData: {fileID: 11400000, guid: 5ff7b7fdce3d71296b221d483b35b651, type: 2}
   fileName: personData.json
+  uploadUrl: http://192.168.178.43:3000/upload
 --- !u!4 &278903058
 Transform:
   m_ObjectHideFlags: 0

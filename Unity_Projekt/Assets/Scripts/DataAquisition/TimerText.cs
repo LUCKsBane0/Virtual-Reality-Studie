@@ -34,6 +34,6 @@ public class TimerText : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
 
         // Apply the target rotation but keep the X rotation fixed (facing downwards)
-        transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0); // Rotated 90 degrees on X to face downwards
+        transform.rotation = Quaternion.Euler(90, targetRotation.eulerAngles.y, 0); // Rotated 90 degrees on X to face downwards
     }
 }

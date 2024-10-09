@@ -167,7 +167,7 @@ public class HighlightControllerButtons : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             buttonMaterial.color = Color.Lerp(startColor, targetColor, elapsedTime / fadeDuration);
-            Debug.Log($"Fading {renderer.name}: {buttonMaterial.color}");
+         
             yield return null;
         }
 

@@ -8,7 +8,10 @@ public class ExportSystem : MonoBehaviour
 {
     public StudienTeilnehmer personData; // Assign in Unity Inspector
     public string fileName = "personData.json";
-    public string uploadUrl = "http://localhost:3000/upload"; // URL of your local server
+    public string uploadUrl = "http://192.168.178.43:3000/upload"; // URL of your local server
+
+    private bool uploadSuccess;  // Store result of the upload
+    private string uploadError;  // Store error message if any
 
     private void Awake()
     {
@@ -19,46 +22,70 @@ public class ExportSystem : MonoBehaviour
     // Method to export data from the ScriptableObject to JSON
     public void ExportData()
     {
+        string modifiedFileName = personData.ID + "_" + fileName;
+
         string json = JsonUtility.ToJson(personData, true);
-        string path = Path.Combine(Application.persistentDataPath, fileName);
+        string path = Path.Combine(Application.persistentDataPath, modifiedFileName);
         File.WriteAllText(path, json);
 
         Debug.Log("Data exported to: " + path);
     }
 
-    // Upload JSON file to a file server
+    // Method to start the file upload and check results later
     public void UploadToServer()
     {
-        StartCoroutine(UploadFileCoroutine());
+        StartCoroutine(UploadFileCoroutine((success, error) =>
+        {
+            // This block will be executed AFTER the coroutine finishes
+            if (success)
+            {
+                Debug.Log("File uploaded successfully.");
+            }
+            else
+            {
+                Debug.LogError("File upload failed: " + error);
+            }
+        }));
     }
 
-    private IEnumerator UploadFileCoroutine()
+    // Coroutine to upload the file to the server
+    private IEnumerator UploadFileCoroutine(System.Action<bool, string> callback)
     {
-        string path = Path.Combine(Application.persistentDataPath, fileName);
+        string modifiedFileName = personData.ID + "_" + fileName;
+        string path = Path.Combine(Application.persistentDataPath, modifiedFileName);
 
         // Check if the file exists
         if (!File.Exists(path))
         {
             Debug.LogError("File does not exist.");
+            callback(false, "File does not exist.");
             yield break;
         }
 
-        // Create a UnityWebRequest to send the file to the server
-        UnityWebRequest request = UnityWebRequest.Put(uploadUrl, File.ReadAllBytes(path));
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("file", File.ReadAllBytes(path), modifiedFileName, "application/json");
 
-        // Set the content type to application/json
-        request.SetRequestHeader("Content-Type", "application/json");
+        UnityWebRequest request = UnityWebRequest.Post(uploadUrl, form);
+        request.timeout = 10;  // Timeout after 10 seconds
 
-        // Send the request and wait for it to complete
+        Debug.Log("Sending file to server...");
+
+        // Send the request and yield until complete
         yield return request.SendWebRequest();
 
-        if (request.result != UnityWebRequest.Result.Success)
+        // Determine success or failure
+        if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.LogError("File upload failed: " + request.error);
+            // Upload succeeded
+            uploadSuccess = true;
+            callback(true, null);  // Notify success
         }
         else
         {
-            Debug.Log("File uploaded successfully.");
+            // Upload failed
+            uploadSuccess = false;
+            uploadError = request.error;
+            callback(false, request.error);  // Notify failure
         }
     }
 
