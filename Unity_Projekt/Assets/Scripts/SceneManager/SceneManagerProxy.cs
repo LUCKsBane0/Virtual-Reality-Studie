@@ -3,6 +3,21 @@ using UnityEngine;
 public class SceneManagerProxy : MonoBehaviour
 {
     // Proxy method for loading a scene by name
+
+    public string getCurrentScenario()
+    {
+        var sceneManager = SceneManagerPersistent.getInstance();
+        if (sceneManager != null)
+        {
+            return sceneManager.currentScenario;
+        }
+        else
+        {
+            Debug.LogError("SceneManagerPersistent instance not found.");
+            return null;
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
         var sceneManager = SceneManagerPersistent.getInstance();

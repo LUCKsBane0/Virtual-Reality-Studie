@@ -6,7 +6,8 @@ public class SceneManagerPersistent : MonoBehaviour
 {
     [HideInInspector]
     public int currentLoadedScenes;
-
+    [HideInInspector]
+    public string currentScenario;
     [Header("Scene Pools")]
     public List<ScenePool> pools; // List of scene pools that can be modified in the inspector
 
@@ -60,9 +61,23 @@ public class SceneManagerPersistent : MonoBehaviour
         if(selectedPool.maxLoadedScenes < currentLoadedScenes)
         {
             #if UNITY_EDITOR
+            
             UnityEditor.EditorApplication.isPlaying = false;  // Stop play mode in the Editor
+            //Kann man besser machen!
+            ExportSystem ex = FindObjectOfType<ExportSystem>();
+            if (ex != null)
+            {
+                ex.UploadToServer();
+            }
+
+
             #else
-                Application.Quit();  // Quit the application in a build
+            ExportSystem ex = FindObjectOfType<ExportSystem>();
+            if (ex != null)
+            {
+                ex.UploadToServer();
+            }   
+            Application.Quit();  // Quit the application in a build
             #endif
             return;
         }
@@ -73,6 +88,7 @@ public class SceneManagerPersistent : MonoBehaviour
             //Remove Scene from pool
             selectedPool.sceneNames.Remove(randomScene);
             // Load the randomly selected scene
+            currentScenario = randomScene;
             LoadScene(randomScene);
         }
         else

@@ -15,8 +15,8 @@ public class ExportSystem : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
-        ResetPersonData();
+        //DontDestroyOnLoad(this.gameObject);
+        //ResetPersonData();
     }
 
     // Method to export data from the ScriptableObject to JSON
