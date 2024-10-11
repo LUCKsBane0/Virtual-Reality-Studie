@@ -2789,6 +2789,14 @@ PrefabInstance:
       propertyPath: movementBufferDuration
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+      propertyPath: leftControllerTransform
+      value: 
+      objectReference: {fileID: 1171858915}
+    - target: {fileID: 3017660539313942768, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+      propertyPath: rightControllerTransform
+      value: 
+      objectReference: {fileID: 1396773206}
     - target: {fileID: 3093801649009593279, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3758,6 +3766,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2a0d5ffc281516478d99465d46d8d06, type: 3}
+--- !u!4 &1396773206 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9167608111377853850, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}
+  m_PrefabInstance: {fileID: 1171858914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1436763464
 Mesh:
   m_ObjectHideFlags: 0
@@ -4650,6 +4663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLoadedScenes: 0
+  currentScenario: 
   pools:
   - maxLoadedScenes: 1
     poolName: pool

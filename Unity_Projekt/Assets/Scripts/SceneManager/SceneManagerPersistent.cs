@@ -67,6 +67,7 @@ public class SceneManagerPersistent : MonoBehaviour
             ExportSystem ex = FindObjectOfType<ExportSystem>();
             if (ex != null)
             {
+                ex.ExportData();
                 ex.UploadToServer();
             }
 
@@ -75,7 +76,8 @@ public class SceneManagerPersistent : MonoBehaviour
             ExportSystem ex = FindObjectOfType<ExportSystem>();
             if (ex != null)
             {
-                ex.UploadToServer();
+                  ex.ExportData();
+                  ex.UploadToServer();
             }   
             Application.Quit();  // Quit the application in a build
             #endif
