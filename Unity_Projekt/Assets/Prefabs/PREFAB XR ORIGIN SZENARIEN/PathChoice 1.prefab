@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &110834121541373265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4350804272792224193}
+  - component: {fileID: 8094741701478484526}
+  - component: {fileID: 2609241379549657147}
+  - component: {fileID: 1963389591658548957}
+  - component: {fileID: 6171798958349043612}
+  m_Layer: 0
+  m_Name: PathChoice 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4350804272792224193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110834121541373265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.4605097, z: 0, w: 0.8876547}
+  m_LocalPosition: {x: 7.25, y: 299.84, z: 72.77}
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 54.84, z: 0}
+--- !u!65 &8094741701478484526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110834121541373265}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.49, y: 8.57, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2609241379549657147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110834121541373265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cfe379ebcf77f42b455c49fc3b0970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateConditions:
+  - trigger: {fileID: 1963389591658548957}
+    stateTransitions:
+    - previousState: 0
+      targetState: 1
+--- !u!114 &1963389591658548957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110834121541373265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2757a57b16d394f902e72e30841e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTargetMet:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayerObjectName: XR Origin (XR Rig)
+--- !u!114 &6171798958349043612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110834121541373265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7025b7d4058fd445b73924236fd4b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XR_Origin_Name: XR Origin (XR Rig)
+  PATH_NAME: SZENARIO_1_HARD
