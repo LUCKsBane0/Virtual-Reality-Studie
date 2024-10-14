@@ -48,10 +48,11 @@ public class ArmSwingLocomotion : MonoBehaviour
     {
         if (enable)
         {
+            ApplyGravity();
             ArmSwingMovement();
         }
 
-        ApplyGravity(); // Always apply gravity regardless of arm-swing locomotion
+         // Always apply gravity regardless of arm-swing locomotion
     }
 
     private void ArmSwingMovement()
