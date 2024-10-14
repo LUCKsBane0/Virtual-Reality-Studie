@@ -7,6 +7,10 @@ TagManager:
   - ClimbTip
   - Climbable
   - Anchor
+  - Wood_Floor
+  - Stone_Floor
+  - Mud_Floor
+  - Snow_Floor
   layers:
   - Default
   - TransparentFX
