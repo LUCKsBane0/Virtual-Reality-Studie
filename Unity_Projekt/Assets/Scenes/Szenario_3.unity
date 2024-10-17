@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e7ab0ebdf6cb8324f93037c3d7784d1c, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 76f746e9f6f6e464fb6c803f14e6dfd2, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -8429,7 +8429,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -26797,7 +26797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2459191999592337631, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2459191999592337631, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
       propertyPath: movementSpeed
