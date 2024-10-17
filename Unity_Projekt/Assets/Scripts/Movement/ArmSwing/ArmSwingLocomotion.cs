@@ -11,7 +11,6 @@ public class ArmSwingLocomotion : MonoBehaviour
     public float movementSpeed = 5.0f;        // Fixed movement speed when threshold is met
     public float armSpeedThreshold = 0.05f;   // Speed threshold for individual arm movement
     public float movementBufferDuration = 0.5f; // Buffer duration for continuous movement
-    public float gravity = -9.81f;            // Gravity value
 
     [Header("Movement Mode")]
     public bool useArms = true;   // Whether to use arms or camera for determining movement direction
@@ -28,7 +27,6 @@ public class ArmSwingLocomotion : MonoBehaviour
     private Vector3 leftHandPreviousPosition;  // Previous position of the left hand
     private Vector3 rightHandPreviousPosition; // Previous position of the right hand
 
-    private Vector3 playerVelocity;            // Player's vertical velocity (for gravity)
     private float movementBuffer;              // Buffer timer for continuous movement
     private bool isMovingWithArms = false;     // Flag to track if moving by arm-swing
 
@@ -48,11 +46,8 @@ public class ArmSwingLocomotion : MonoBehaviour
     {
         if (enable)
         {
-            ApplyGravity();
             ArmSwingMovement();
         }
-
-         // Always apply gravity regardless of arm-swing locomotion
     }
 
     private void ArmSwingMovement()
@@ -81,8 +76,8 @@ public class ArmSwingLocomotion : MonoBehaviour
                 movementDirection.y = 0; // Keep movement horizontal
                 movementDirection.Normalize();
 
-                // Apply movement at a constant speed
-                characterController.Move(movementDirection * movementSpeed * Time.deltaTime);
+                // Use SimpleMove to apply movement
+                characterController.SimpleMove(movementDirection * movementSpeed);
 
                 // Set buffer timer to keep moving and mark that movement was triggered by arms
                 movementBuffer = movementBufferDuration;
@@ -99,30 +94,13 @@ public class ArmSwingLocomotion : MonoBehaviour
             movementDirection.y = 0;
             movementDirection.Normalize();
 
-            characterController.Move(movementDirection * movementSpeed * Time.deltaTime);
+            characterController.SimpleMove(movementDirection * movementSpeed);
             movementBuffer -= Time.deltaTime;
         }
 
         // Update previous hand positions
         leftHandPreviousPosition = leftHandCurrentPosition;
         rightHandPreviousPosition = rightHandCurrentPosition;
-    }
-
-    private void ApplyGravity()
-    {
-        // Check if the player is grounded
-        if (characterController.isGrounded)
-        {
-            playerVelocity.y = 0f; // Reset vertical velocity if grounded
-        }
-        else
-        {
-            // Apply gravity to vertical velocity
-            playerVelocity.y += gravity * Time.deltaTime;
-        }
-
-        // Apply gravity using the CharacterController
-        characterController.Move(playerVelocity * Time.deltaTime);
     }
 
     // Method to get the average forward direction from both controllers

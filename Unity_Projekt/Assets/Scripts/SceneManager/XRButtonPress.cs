@@ -7,6 +7,7 @@ public class XRButtonPress : MonoBehaviour
     public ExportSystem exportSystem;
     public TimeMeasurement_Global time;
     private bool pressed = false;
+    public bool failed;
     // This is called when another collider enters the trigger zone
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +36,15 @@ public class XRButtonPress : MonoBehaviour
         {
             GetComponent<Trigger>().TriggerTargetMet_DO_USE_WITH_CARE();
             // PUT GLOBAL TIME
-            exportSystem.AddSzenarioZeit(time.getElapsedTime());
+            if (failed)
+            {
+                exportSystem.AddSzenarioZeit(-1f);
+            }
+            else
+            {
+                exportSystem.AddSzenarioZeit(time.getElapsedTime());
+
+            }
 
             // PUT SCENE
             exportSystem.AddSzenario(SceneManager.GetActiveScene().name);
