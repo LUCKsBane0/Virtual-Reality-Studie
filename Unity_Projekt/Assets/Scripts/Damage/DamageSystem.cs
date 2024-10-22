@@ -8,9 +8,18 @@ public class DamageSystem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision);
         // Check if the object hit has a HealthSystem component (i.e., it's the player)
         HealthSystem playerHealth = collision.gameObject.GetComponent<HealthSystem>();
 
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(damageAmount);  // Apply damage to the player
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        HealthSystem playerHealth = other.gameObject.GetComponent<HealthSystem>();
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(damageAmount);  // Apply damage to the player
