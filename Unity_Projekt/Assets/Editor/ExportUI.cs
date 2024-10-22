@@ -44,6 +44,19 @@ public class PersonDataEditorWindow : EditorWindow
                 EditorUtility.DisplayDialog("Error", "Please assign a PersonData ScriptableObject before uploading.", "OK");
             }
         }
+
+        // Add a new button for resetting the person data
+        if (GUILayout.Button("Reset Person Data"))
+        {
+            if (personData != null)
+            {
+                ResetPersonData();
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("Error", "Please assign a PersonData ScriptableObject before resetting.", "OK");
+            }
+        }
     }
 
     private void ExportData()
@@ -69,6 +82,21 @@ public class PersonDataEditorWindow : EditorWindow
 
         // Call the UploadToServer method (we assume the data has been exported already)
         exporter.UploadToServer();
+
+        // Clean up
+        DestroyImmediate(tempGO);
+    }
+
+    // Method to reset the person data
+    private void ResetPersonData()
+    {
+        // Create a temporary GameObject with the ExportSystem component attached
+        GameObject tempGO = new GameObject("TempExporter");
+        exporter = tempGO.AddComponent<ExportSystem>();
+        exporter.personData = personData; // Assign the ScriptableObject to the exporter
+
+        // Call the ResetPersonData method
+        exporter.ResetPersonData();
 
         // Clean up
         DestroyImmediate(tempGO);

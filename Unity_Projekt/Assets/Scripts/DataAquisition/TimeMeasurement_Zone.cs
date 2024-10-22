@@ -3,37 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TimeMeasurement_Zone : MonoBehaviour
+public class TimeMeasurement_Local : MonoBehaviour
 {
     private bool timerRunning = false;  // Check if the timer is running
     private float elapsedTime = 0f;     // Track the elapsed time
 
-    public TextMeshProUGUI timerText;  // Reference to the TextMeshProUGUI component
+  
 
     private void Start()
     {
         // Find the TextMeshProUGUI component attached to the "Text" child object
-       
+        StartTimer();
         UpdateTimerText(); // Initialize the timer text
     }
 
     // When the player enters the trigger, start the timer
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.name == "XR Origin (XR Rig)")
-        {
-            StartTimer();
-        }
-    }
-
-    // When the player exits the trigger, stop the timer
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.name == "XR Origin (XR Rig)")
-        {
-            StopTimer();
-        }
-    }
+ 
 
     // Start the timer
     private void StartTimer()
@@ -43,7 +28,7 @@ public class TimeMeasurement_Zone : MonoBehaviour
     }
 
     // Stop the timer
-    private void StopTimer()
+    public void StopTimer()
     {
         timerRunning = false;
     }
@@ -64,6 +49,10 @@ public class TimeMeasurement_Zone : MonoBehaviour
     {
         // Format the time as minutes and seconds
         string timeFormatted = string.Format("{0:00}:{1:00}", Mathf.FloorToInt(elapsedTime / 60), Mathf.FloorToInt(elapsedTime % 60));
-        timerText.SetText(timeFormatted);
+        
+    }
+    public float getElapsedTime()
+    {
+        return elapsedTime;
     }
 }

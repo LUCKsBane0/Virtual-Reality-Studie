@@ -19,12 +19,10 @@ MonoBehaviour:
   Gaming_Erfahrung: 2
   StudienTyp: 
   StudienGruppe: 
-  Szenarien:
-  - Szenario_1
+  Szenarien: []
   Pfad:
-  - SZENARIO_1_HARD
-  Bewertungen:
-  - Szenario_1_4
-  "Z\xF6gern_Zeiten": []
-  Szenario_Zeiten:
-  - 82.50678
+  - SZENARIO_1_MIDDLE
+  Bewertungen: []
+  "Z\xF6gern_Zeiten":
+  - 40.757072
+  Szenario_Zeiten: []
