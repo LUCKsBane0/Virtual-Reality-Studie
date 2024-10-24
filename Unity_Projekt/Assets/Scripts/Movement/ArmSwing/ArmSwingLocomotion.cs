@@ -84,7 +84,7 @@ public class ArmSwingLocomotion : MonoBehaviour
                 movementBuffer = movementBufferDuration;
                 isMovingWithArms = true;
 
-                Debug.Log($"Moving in direction: {movementDirection}");
+               // Debug.Log($"Moving in direction: {movementDirection}");
             }
         }
 

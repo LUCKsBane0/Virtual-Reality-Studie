@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
 
 public class ClimbInteractableEventHandler : MonoBehaviour
 {
     [Header("References")]
     public ClimbGravityManager climbGravityManager;
 
-    private XRGrabInteractable grabInteractable;
+    private ClimbInteractable grabInteractable;
 
     void Awake()
     {
-        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<ClimbInteractable>();
 
         // Subscribe to the grab events
         grabInteractable.selectEntered.AddListener(OnClimbStarted);
