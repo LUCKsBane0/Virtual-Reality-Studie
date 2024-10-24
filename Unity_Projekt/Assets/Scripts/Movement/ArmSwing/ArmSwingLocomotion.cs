@@ -31,7 +31,8 @@ public class ArmSwingLocomotion : MonoBehaviour
     private bool isMovingWithArms = false;     // Flag to track if moving by arm-swing
 
     private void Start()
-    {
+    {   
+        
         // Initialize hand positions
         leftHandPreviousPosition = GetControllerPosition(leftHandNode);
         rightHandPreviousPosition = GetControllerPosition(rightHandNode);

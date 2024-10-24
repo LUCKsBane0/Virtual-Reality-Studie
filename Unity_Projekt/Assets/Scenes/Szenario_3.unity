@@ -10932,6 +10932,67 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1421329600}
   m_SourcePrefab: {fileID: 100100000, guid: 9d12464ab7195104c9a0ed50a08ccbea, type: 3}
+--- !u!1 &451677139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451677140}
+  - component: {fileID: 451677141}
+  - component: {fileID: 451677142}
+  m_Layer: 2
+  m_Name: GravityController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451677140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451677139}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 654966126}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &451677141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451677139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ac5b99954b601409fc2aacae95b32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 980185423}
+  gravity: -9.81
+  enableGravity: 1
+--- !u!114 &451677142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451677139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fa80e28cfca5040bbf669bab0d6c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityController: {fileID: 451677141}
 --- !u!1001 &453970049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11383,6 +11444,7 @@ GameObject:
   - component: {fileID: 464394060}
   - component: {fileID: 464394062}
   - component: {fileID: 464394061}
+  - component: {fileID: 464394063}
   m_Layer: 10
   m_Name: Handles (Climbable)
   m_TagString: Untagged
@@ -11491,7 +11553,7 @@ MonoBehaviour:
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
   m_ClimbProvider: {fileID: 0}
-  m_ClimbTransform: {fileID: 0}
+  m_ClimbTransform: {fileID: 464394060}
   m_FilterInteractionByDistance: 1
   m_MaxInteractionDistance: 0.15
   m_ClimbAssistanceTeleportVolume: {fileID: 0}
@@ -11529,6 +11591,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &464394063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464394059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982ccb321b6a2f84c842dfe3509491c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbGravityManager: {fileID: 451677142}
 --- !u!1001 &465677891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16553,6 +16628,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 534423971}
   m_SourcePrefab: {fileID: 100100000, guid: 9d12464ab7195104c9a0ed50a08ccbea, type: 3}
+--- !u!4 &654966126 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3631795055350536723, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
+  m_PrefabInstance: {fileID: 1666416158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &658330766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23781,6 +23861,11 @@ MonoBehaviour:
 --- !u!4 &980185422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5895638227670923363, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
+  m_PrefabInstance: {fileID: 1666416158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &980185423 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 1705573415747250077, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
   m_PrefabInstance: {fileID: 1666416158}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &981348664
@@ -41466,7 +41551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3617230691453945973, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5744049747584927015, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
       propertyPath: m_IsActive
@@ -41790,6 +41875,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8428996174966476213, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1719357408}
+    - targetCorrespondingSourceObject: {fileID: 3631795055350536723, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 451677140}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2503096056841927577, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}
       insertIndex: -1
