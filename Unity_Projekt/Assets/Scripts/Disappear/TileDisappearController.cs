@@ -17,7 +17,7 @@ public class TileDisappearController : MonoBehaviour
     [Header("Timing Settings")]
     public float disappearDuration = 2.0f;  // Time for the tile to disappear
     public float reappearDelay = 2.0f;      // Delay before the tile reappears
-    public float groupInterval = 5.0f;      // Interval at which a group will trigger
+    public float groupInterval = 5.0f;      // Interval at which the groups cycle
     public float highlightDuration = 2.0f;  // Time the tile stays highlighted before disappearing
 
     [Header("Material Settings")]
@@ -26,18 +26,16 @@ public class TileDisappearController : MonoBehaviour
 
     private void Start()
     {
-        // Start the process for each group with intervals
-        for (int i = 0; i < tileGroups.Count; i++)
+        // Start the disappearance process for all groups at the same time
+        foreach (TileGroup group in tileGroups)
         {
-            StartCoroutine(HandleGroupTiles(tileGroups[i], i * groupInterval));
+            StartCoroutine(HandleGroupTiles(group));
         }
     }
 
     // Coroutine to handle a group of tiles disappearing randomly
-    private IEnumerator HandleGroupTiles(TileGroup tileGroup, float startDelay)
+    private IEnumerator HandleGroupTiles(TileGroup tileGroup)
     {
-        yield return new WaitForSeconds(startDelay);  // Delay the start based on group
-
         while (true)
         {
             // Randomly choose a tile from the group
@@ -46,7 +44,7 @@ public class TileDisappearController : MonoBehaviour
             // Start disappearing and reappearing the tile
             StartCoroutine(DisappearTile(randomTile));
 
-            // Wait before picking the next tile
+            // Wait before the next tile disappears within the same group
             yield return new WaitForSeconds(groupInterval);
         }
     }

@@ -6,40 +6,56 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 public class ArmSwingLocomotion : MonoBehaviour
 {
     [Header("Locomotion Settings")]
-    public bool enable = true;                // Enable/disable arm-swing locomotion
-    public float movementThreshold = 0.01f;   // Minimum hand movement speed required to trigger locomotion
-    public float movementSpeed = 5.0f;        // Fixed movement speed when threshold is met
-    public float armSpeedThreshold = 0.05f;   // Speed threshold for individual arm movement
-    public float movementBufferDuration = 0.5f; // Buffer duration for continuous movement
+    public bool enable = true;
+    public float movementThreshold = 0.01f;
+    public float movementSpeed = 5.0f;
+    public float armSpeedThreshold = 0.05f;
+    public float movementBufferDuration = 0.5f;
+    public float swingSensitivity = 1.0f;
+
+    [Header("Speed Range")]
+    public float minSpeed = 2.0f;
+    public float maxSpeed = 10.0f;
 
     [Header("Movement Mode")]
-    public bool useArms = true;   // Whether to use arms or camera for determining movement direction
+    public bool useArms = true;
 
     [Header("References")]
-    public XRNode leftHandNode = XRNode.LeftHand;   // Left hand input
-    public XRNode rightHandNode = XRNode.RightHand; // Right hand input
+    public XRNode leftHandNode = XRNode.LeftHand;
+    public XRNode rightHandNode = XRNode.RightHand;
     public CharacterController characterController;
-    public Transform cameraTransform; // Reference to the main camera (headset)
-    public Transform leftControllerTransform;   // Reference to the left controller (set manually or via script)
-    public Transform rightControllerTransform;  // Reference to the right controller (set manually or via script)
-    public ContinuousMoveProvider continuousMoveProvider; // Stick-based movement provider
+    public Transform cameraTransform;
+    public Transform leftControllerTransform;
+    public Transform rightControllerTransform;
 
-    private Vector3 leftHandPreviousPosition;  // Previous position of the left hand
-    private Vector3 rightHandPreviousPosition; // Previous position of the right hand
+    private Vector3 leftHandPreviousPosition;
+    private Vector3 rightHandPreviousPosition;
 
-    private float movementBuffer;              // Buffer timer for continuous movement
-    private bool isMovingWithArms = false;     // Flag to track if moving by arm-swing
+    private float movementBuffer;
+    private bool isMovingWithArms = false;
+    private float currentMovementSpeed;
+
+    private Vector3[] movementDirections;
 
     private void Start()
-    {   
-        
+    {
         // Initialize hand positions
         leftHandPreviousPosition = GetControllerPosition(leftHandNode);
         rightHandPreviousPosition = GetControllerPosition(rightHandNode);
 
         if (cameraTransform == null)
         {
-            cameraTransform = Camera.main.transform; // Assign the camera if not set
+            cameraTransform = Camera.main.transform;
+        }
+
+        currentMovementSpeed = minSpeed;
+
+        // Generate 16 predefined movement directions (every 22.5 degrees)
+        movementDirections = new Vector3[16];
+        for (int i = 0; i < 16; i++)
+        {
+            float angle = i * 22.5f;
+            movementDirections[i] = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), 0, Mathf.Sin(Mathf.Deg2Rad * angle));
         }
     }
 
@@ -53,9 +69,9 @@ public class ArmSwingLocomotion : MonoBehaviour
 
     private void ArmSwingMovement()
     {
-        isMovingWithArms = false; // Reset the arm-swing movement flag
+        isMovingWithArms = false;
 
-        // Get the current hand positions
+        // Get current hand positions
         Vector3 leftHandCurrentPosition = GetControllerPosition(leftHandNode);
         Vector3 rightHandCurrentPosition = GetControllerPosition(rightHandNode);
 
@@ -63,55 +79,67 @@ public class ArmSwingLocomotion : MonoBehaviour
         Vector3 leftHandMovement = leftHandCurrentPosition - leftHandPreviousPosition;
         Vector3 rightHandMovement = rightHandCurrentPosition - rightHandPreviousPosition;
 
-        // Check if both arms are moving in opposite directions (up and down) and at a speed greater than the threshold
+        // Calculate combined hand speed
+        float combinedHandSpeed = (Mathf.Abs(leftHandMovement.y) + Mathf.Abs(rightHandMovement.y)) / 2.0f;
+
         if (Mathf.Abs(leftHandMovement.y) > armSpeedThreshold && Mathf.Abs(rightHandMovement.y) > armSpeedThreshold)
         {
-            // Add both arm movements' y components together
             float combinedYMovement = leftHandMovement.y + rightHandMovement.y;
 
-            // If combined Y movement is close to zero (arms moving opposite to each other), trigger locomotion
             if (Mathf.Abs(combinedYMovement) < movementThreshold)
             {
-                // Decide movement direction based on the mode (useArms or camera-based)
+                float adjustedSpeed = combinedHandSpeed * swingSensitivity;
+                float speedPercentage = Mathf.Clamp01(adjustedSpeed / armSpeedThreshold);
+                currentMovementSpeed = Mathf.Lerp(minSpeed, maxSpeed, speedPercentage);
+
                 Vector3 movementDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
-                movementDirection.y = 0; // Keep movement horizontal
-                movementDirection.Normalize();
+                movementDirection = GetClosestDirection(movementDirection);
 
-                // Use SimpleMove to apply movement
-                characterController.SimpleMove(movementDirection * movementSpeed);
-
-                // Set buffer timer to keep moving and mark that movement was triggered by arms
+                characterController.SimpleMove(movementDirection * currentMovementSpeed);
                 movementBuffer = movementBufferDuration;
                 isMovingWithArms = true;
 
-               // Debug.Log($"Moving in direction: {movementDirection}");
+                Debug.Log($"Swing Speed Percentage: {speedPercentage * 100}%, Movement Speed: {currentMovementSpeed} m/s");
             }
         }
 
-        // Continue movement during the buffer period only if not moving with arms
         if (movementBuffer > 0 && !isMovingWithArms)
         {
             Vector3 movementDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
-            movementDirection.y = 0;
-            movementDirection.Normalize();
+            movementDirection = GetClosestDirection(movementDirection);
 
-            characterController.SimpleMove(movementDirection * movementSpeed);
+            characterController.SimpleMove(movementDirection * currentMovementSpeed);
             movementBuffer -= Time.deltaTime;
         }
 
-        // Update previous hand positions
         leftHandPreviousPosition = leftHandCurrentPosition;
         rightHandPreviousPosition = rightHandCurrentPosition;
     }
 
-    // Method to get the average forward direction from both controllers
+    // Find closest predefined direction
+    private Vector3 GetClosestDirection(Vector3 movementDirection)
+    {
+        float maxDot = -1f;
+        Vector3 closestDirection = movementDirection;
+
+        foreach (Vector3 direction in movementDirections)
+        {
+            float dot = Vector3.Dot(movementDirection, direction);
+            if (dot > maxDot)
+            {
+                maxDot = dot;
+                closestDirection = direction;
+            }
+        }
+        return closestDirection;
+    }
+
     private Vector3 GetCombinedControllerForwardDirection()
     {
         if (leftControllerTransform != null && rightControllerTransform != null)
         {
-            // Average the forward directions of both controllers
             Vector3 combinedDirection = (leftControllerTransform.forward + rightControllerTransform.forward) / 2;
-            return combinedDirection;
+            return combinedDirection.normalized;
         }
         else if (leftControllerTransform != null)
         {
@@ -121,28 +149,21 @@ public class ArmSwingLocomotion : MonoBehaviour
         {
             return rightControllerTransform.forward;
         }
-
-        // Default to no movement if both controllers are unavailable
         return Vector3.zero;
     }
 
-    // Method to get the forward direction from the camera
     private Vector3 GetCameraForwardDirection()
     {
         return cameraTransform.forward;
     }
 
-    // Method to get the controller position using InputDevices and CommonUsages.devicePosition
     private Vector3 GetControllerPosition(XRNode handNode)
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(handNode);
-        Vector3 position;
-
-        if (device.TryGetFeatureValue(CommonUsages.devicePosition, out position))
+        if (device.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position))
         {
             return position;
         }
-
-        return Vector3.zero; // Return zero if position cannot be obtained
+        return Vector3.zero;
     }
 }
