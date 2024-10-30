@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
 /**
 wenn BoxColliderAudioTip in die Eiswand eindringt/sie verlässt soll der entsprechende ton abgespielt werden
 BoxColiderSecureHold muss kontakt zur eiswand haben sonnst rutscht man ab
@@ -18,28 +13,3 @@ wenn eine axt fest ist und der spiler eine zweite fest machen will löst sich die
 -> wenn die zweite Axt nicht richtig im Berg ist fällt der Spieler nicht
  
  */
-
-
-
-
-
-
-
-
-
-
-
-public class ClimbInfo : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
