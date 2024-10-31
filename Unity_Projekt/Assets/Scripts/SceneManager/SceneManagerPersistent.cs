@@ -12,7 +12,14 @@ public class SceneManagerPersistent : MonoBehaviour
     public List<ScenePool> pools; // List of scene pools that can be modified in the inspector
 
     private static SceneManagerPersistent instance;
-
+    public void setMaxLoadedScenes_ALL(int m)
+    {
+        
+        foreach (var pool in pools)
+        {
+            pool.maxLoadedScenes = m;
+        }
+    }
     // Singleton getter
     public static SceneManagerPersistent getInstance()
     {
@@ -106,7 +113,7 @@ public class ScenePool
     public int maxLoadedScenes;
     public string poolName;                 // Name of the pool
     public List<string> sceneNames;         // List of scene names (strings)
-
+    
     // Get the scene name from the list of strings
     public string GetRandomSceneName()
     {

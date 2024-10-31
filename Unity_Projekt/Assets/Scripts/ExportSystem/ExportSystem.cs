@@ -123,4 +123,12 @@ public class ExportSystem : MonoBehaviour
 
         Debug.Log("PersonData has been reset with a new ID: " + personData.ID);
     }
+    public void setFileName(string fileName_)
+    {
+        fileName = fileName_;
+    }
+    public void setUploadURL(string uploadURL_)
+    {
+        uploadUrl = uploadURL_;
+    }
 }

@@ -4883,6 +4883,7 @@ GameObject:
   - component: {fileID: 1852718707}
   - component: {fileID: 1852718708}
   - component: {fileID: 1852718709}
+  - component: {fileID: 1852718710}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -4953,6 +4954,39 @@ MonoBehaviour:
             m_StringArgument: Questionaire
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1852718710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852718706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee5dffb3a8bc5946b518f12a6d1fd3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  env: {fileID: 11400000, guid: fdf331a451ebd56498097de440f81190, type: 2}
+  envSettings:
+  - envVariableName: scenario_count
+    intSetterEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1852718708}
+          m_TargetAssemblyTypeName: SceneManagerPersistent, Assembly-CSharp
+          m_MethodName: setMaxLoadedScenes_ALL
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    stringSetterEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1868935313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3842362341517106231, guid: 251a9ba7cfd580945b6f734a79273e98, type: 3}

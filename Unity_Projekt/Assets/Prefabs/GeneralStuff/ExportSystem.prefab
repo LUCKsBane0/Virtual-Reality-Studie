@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2594295460026214840}
   - component: {fileID: 1039727302025610669}
+  - component: {fileID: 6567048888463752367}
   m_Layer: 0
   m_Name: ExportSystem
   m_TagString: Untagged
@@ -47,3 +48,93 @@ MonoBehaviour:
   personData: {fileID: 11400000, guid: 5ff7b7fdce3d71296b221d483b35b651, type: 2}
   fileName: personData.json
   uploadUrl: http://192.168.178.43:3000/upload
+--- !u!114 &6567048888463752367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233595059191831250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee5dffb3a8bc5946b518f12a6d1fd3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  env: {fileID: 11400000, guid: fdf331a451ebd56498097de440f81190, type: 2}
+  envSettings:
+  - envVariableName: exportIPAddress
+    intSetterEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    stringSetterEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1039727302025610669}
+          m_TargetAssemblyTypeName: ExportSystem, Assembly-CSharp
+          m_MethodName: setUploadURL
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - envVariableName: exportFileName
+    intSetterEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    stringSetterEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1039727302025610669}
+          m_TargetAssemblyTypeName: ExportSystem, Assembly-CSharp
+          m_MethodName: setFileName
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - envVariableName: study_group
+    intSetterEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    stringSetterEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1039727302025610669}
+          m_TargetAssemblyTypeName: ExportSystem, Assembly-CSharp
+          m_MethodName: SetStudienGruppe
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - envVariableName: study_type
+    intSetterEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    stringSetterEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1039727302025610669}
+          m_TargetAssemblyTypeName: ExportSystem, Assembly-CSharp
+          m_MethodName: SetStudienTyp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

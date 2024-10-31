@@ -2047,12 +2047,16 @@ MonoBehaviour:
   movementSpeed: 0.02
   armSpeedThreshold: 0.05
   movementBufferDuration: 0.5
-  gravity: -9.81
+  swingSensitivity: 1
+  minSpeed: 2
+  maxSpeed: 10
+  useArms: 1
   leftHandNode: 4
   rightHandNode: 5
   characterController: {fileID: 7714620803049725786}
   cameraTransform: {fileID: 7280112284164237725}
-  continuousMoveProvider: {fileID: 5662787682865524914}
+  leftControllerTransform: {fileID: 0}
+  rightControllerTransform: {fileID: 0}
 --- !u!1 &6608487782262138603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,20 +2520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 8408950212934246944}
-  stepSounds:
-  - {fileID: 8300000, guid: 06c956466747e764aa6d69fbee1b0935, type: 3}
-  - {fileID: 8300000, guid: 23eec9c94cd24a54087125f67f12f5a5, type: 3}
-  - {fileID: 8300000, guid: 28864cb8aba39f742b2e52c3a5a4b113, type: 3}
-  - {fileID: 8300000, guid: 69ce65de178f68c409ed53debc0c8148, type: 3}
-  - {fileID: 8300000, guid: 152baa2c7a679d547883e6585674da7a, type: 3}
-  - {fileID: 8300000, guid: c4ef324bf90bc9b45878c7e5acf7e4a5, type: 3}
-  - {fileID: 8300000, guid: 4477d53a3a60ea643b87fe82504aee67, type: 3}
-  - {fileID: 8300000, guid: 706fe9682ff24844e9b6f71d56f9b9e1, type: 3}
-  - {fileID: 8300000, guid: 2227cea3c6513a8418c2e66b6e823f6f, type: 3}
-  - {fileID: 8300000, guid: 071e5d5bdeb478746927080a2b18c5cd, type: 3}
-  - {fileID: 8300000, guid: 9fbc8e15df2ca7842affcbcfde0ab937, type: 3}
-  - {fileID: 8300000, guid: 30d86af66b44dea418980eaeec35dcf2, type: 3}
-  - {fileID: 8300000, guid: 214703d4bec78a34f980ea6353c598f0, type: 3}
+  stepSoundSets: []
+  currentSet: 0
   stepInterval: 0.5
 --- !u!82 &8408950212934246944
 AudioSource:

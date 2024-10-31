@@ -10,6 +10,7 @@
 /Unity_Projekt/[Ll]ogs/
 /Unity_Projekt/[Uu]ser[Ss]ettings/
 
+/Unity_Projekt/Assets/env/Env_not_home.asset
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /Unity_Projekt/[Mm]emoryCaptures/
