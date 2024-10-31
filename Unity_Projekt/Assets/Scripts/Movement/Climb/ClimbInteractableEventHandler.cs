@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
 public class ClimbInteractableEventHandler : MonoBehaviour
 {
     [Header("References")]
-    public ClimbGravityManager climbGravityManager;
+    public ClimbManager climbGravityManager;
 
     private ClimbInteractable grabInteractable;
 

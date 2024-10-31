@@ -8,7 +8,7 @@ public class ArmSwingLocomotion : MonoBehaviour
     [Header("Locomotion Settings")]
     public bool enable = true;
     public float movementThreshold = 0.01f;
-    public float movementSpeed = 5.0f;
+    //public float movementSpeed = 5.0f;
     public float armSpeedThreshold = 0.05f;
     public float movementBufferDuration = 0.5f;
     public float swingSensitivity = 1.0f;
