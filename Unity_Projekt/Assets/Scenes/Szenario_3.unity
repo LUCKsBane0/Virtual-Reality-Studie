@@ -45580,7 +45580,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_text
-      value: 'Weg 3: Schwer'
+      value: 'Weg 3: 3 Riskant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7893091868720784541, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: leftHand
@@ -45605,6 +45621,11 @@ PrefabInstance:
     - target: {fileID: 8551730647955548326, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: TriggerWhiteOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577549228739127320, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: "Auf diesem Weg musst du \xFCber die Wand klettern um zum Ziel zu gelangen.
+        Dabei musst du sehr vorsichtig sein, da du herunterfallen k\xF6nntest!"
       objectReference: {fileID: 0}
     - target: {fileID: 8828412226290382460, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_AnchorMax.y
@@ -52498,6 +52519,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
       objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 1: Normal'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7893091868720784541, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: leftHand
       value: 
@@ -52521,6 +52562,13 @@ PrefabInstance:
     - target: {fileID: 8551730647955548326, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: TriggerWhiteOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577549228739127320, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: "Auf diesem Weg musst du darauf achten, nicht von den Gegnern getroffen
+        zu werden. Die spitzen Gegner bewegen sich immer vor und zur\xFCck, die Kugeln
+        bewegen sich auf dich zu, sobald du ihnen zu nahe kommst. Diesen musst du
+        aktiv ausweichen."
       objectReference: {fileID: 0}
     - target: {fileID: 8828412226290382460, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_AnchorMax.y
@@ -55739,6 +55787,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
       objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 2: Nicht riskant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7893091868720784541, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: leftHand
       value: 
@@ -55762,6 +55830,13 @@ PrefabInstance:
     - target: {fileID: 8551730647955548326, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: TriggerWhiteOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577549228739127320, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: "Auf diesem Weg musst du aufpassen, nicht herunterzufallen. Die Plattformen
+        verschwinden immer wieder und tauchen auf. Auf den gr\xFCnen Plattformen
+        bist du sicher. Achtung: Die blauen Plattformen verschwinden schneller als
+        die roten Plattformen!"
       objectReference: {fileID: 0}
     - target: {fileID: 8828412226290382460, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_AnchorMax.y
