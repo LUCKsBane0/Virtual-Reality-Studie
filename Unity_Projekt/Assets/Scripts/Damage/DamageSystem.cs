@@ -19,6 +19,7 @@ public class DamageSystem : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other);
         HealthSystem playerHealth = other.gameObject.GetComponent<HealthSystem>();
         if (playerHealth != null)
         {

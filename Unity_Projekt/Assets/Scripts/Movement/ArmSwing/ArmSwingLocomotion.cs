@@ -8,7 +8,6 @@ public class ArmSwingLocomotion : MonoBehaviour
     [Header("Locomotion Settings")]
     public bool enable = true;
     public float movementThreshold = 0.01f;
-    //public float movementSpeed = 5.0f;
     public float armSpeedThreshold = 0.05f;
     public float movementBufferDuration = 0.5f;
     public float swingSensitivity = 1.0f;
@@ -36,6 +35,10 @@ public class ArmSwingLocomotion : MonoBehaviour
     private float currentMovementSpeed;
 
     private Vector3[] movementDirections;
+    private Vector3 currentMovementDirection;
+
+    [Header("Smoothing Settings")]
+    public float directionSmoothing = 0.1f; // Adjust this value for smoothness
 
     private void Start()
     {
@@ -49,6 +52,7 @@ public class ArmSwingLocomotion : MonoBehaviour
         }
 
         currentMovementSpeed = minSpeed;
+        currentMovementDirection = Vector3.zero;
 
         // Generate 16 predefined movement directions (every 22.5 degrees)
         movementDirections = new Vector3[16];
@@ -92,10 +96,12 @@ public class ArmSwingLocomotion : MonoBehaviour
                 float speedPercentage = Mathf.Clamp01(adjustedSpeed / armSpeedThreshold);
                 currentMovementSpeed = Mathf.Lerp(minSpeed, maxSpeed, speedPercentage);
 
-                Vector3 movementDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
-                movementDirection = GetClosestDirection(movementDirection);
+                // Get the target direction and smooth it
+                Vector3 targetDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
+                targetDirection = GetClosestDirection(targetDirection);
+                currentMovementDirection = Vector3.Lerp(currentMovementDirection, targetDirection, directionSmoothing);
 
-                characterController.SimpleMove(movementDirection * currentMovementSpeed);
+                characterController.SimpleMove(currentMovementDirection * currentMovementSpeed);
                 movementBuffer = movementBufferDuration;
                 isMovingWithArms = true;
 
@@ -105,10 +111,12 @@ public class ArmSwingLocomotion : MonoBehaviour
 
         if (movementBuffer > 0 && !isMovingWithArms)
         {
-            Vector3 movementDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
-            movementDirection = GetClosestDirection(movementDirection);
+            // Apply smoothing for the buffered movement direction as well
+            Vector3 targetDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
+            targetDirection = GetClosestDirection(targetDirection);
+            currentMovementDirection = Vector3.Lerp(currentMovementDirection, targetDirection, directionSmoothing);
 
-            characterController.SimpleMove(movementDirection * currentMovementSpeed);
+            characterController.SimpleMove(currentMovementDirection * currentMovementSpeed);
             movementBuffer -= Time.deltaTime;
         }
 

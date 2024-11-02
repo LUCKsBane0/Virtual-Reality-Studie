@@ -11,6 +11,7 @@ TagManager:
   - Stone_Floor
   - Mud_Floor
   - Snow_Floor
+  - HitTarget
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,10 @@ public class BallEnemy : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("XR Origin (XR Rig)").transform.Find("HitTarget");// Assumes the player is tagged "Player"
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("HitTarget").transform;
+        }
         initialPosition = transform.position;
     }
 

@@ -4925,6 +4925,7 @@ MonoBehaviour:
     poolName: pool
     sceneNames:
     - Szenario_1
+    - Szenario_3
 --- !u!114 &1852718709
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     {
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            player = GameObject.FindGameObjectWithTag("HitTarget").transform;
         }
     }
 

@@ -42,7 +42,6 @@ public class HealthSystem : MonoBehaviour
         if (damageVolume.profile.TryGet(out vignette) && damageVolume.profile.TryGet(out colorAdjustments))
         {
             vignette.intensity.value = 0f;  // Start with no vignette
-            colorAdjustments.postExposure.value = 0f; // No brightness boost
         }
     }
 
@@ -59,7 +58,6 @@ public class HealthSystem : MonoBehaviour
         else
         {
             vignette.intensity.value = 0f;  // Ensure it stays off after fading
-            colorAdjustments.postExposure.value = 0f; // Reset brightness
         }
     }
 
@@ -138,6 +136,8 @@ public class HealthSystem : MonoBehaviour
             yield return null;
         }
 
+        // Reset post-exposure only after fade-out is fully complete
+        colorAdjustments.postExposure.value = 0f;
         isFadingOut = false;
     }
 }
