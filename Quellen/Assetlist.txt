@@ -13,3 +13,4 @@ https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-
 https://assetstore.unity.com/packages/2d/textures-materials/sky/spaceskies-free-80503 - space skies
 https://assetstore.unity.com/packages/p/free-hdr-skyboxes-pack-175525 - skyboxes
 https://assetstore.unity.com/packages/tools/utilities/fence-layout-tool-162856 -fence tool
+https://assetstore.unity.com/packages/2d/textures-materials/sky/10-skyboxes-pack-day-night-32236 - mehr skyboxes
