@@ -14,3 +14,4 @@ https://assetstore.unity.com/packages/2d/textures-materials/sky/spaceskies-free-
 https://assetstore.unity.com/packages/p/free-hdr-skyboxes-pack-175525 - skyboxes
 https://assetstore.unity.com/packages/tools/utilities/fence-layout-tool-162856 -fence tool
 https://assetstore.unity.com/packages/2d/textures-materials/sky/10-skyboxes-pack-day-night-32236 - mehr skyboxes
+https://assetstore.unity.com/packages/2d/textures-materials/hand-painted-rocks-road-texture-196235 - road texture
