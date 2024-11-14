@@ -15,7 +15,7 @@ public class ExportSystem : MonoBehaviour
 {
     public StudienTeilnehmer personData; // Assign in Unity Inspector
     public string fileName = "personData.json";
-    public string uploadUrl = "http://192.168.178.43:3000/upload"; // URL of your local server
+    public string uploadUrl = "localhost:3000/upload"; // URL of your local server
     private AdminCredentials credentials;
     private bool uploadSuccess;  // Store result of the upload
     private string uploadError;  // Store error message if any
@@ -39,6 +39,7 @@ public class ExportSystem : MonoBehaviour
     // Method to start the file upload and check results later
     public void UploadToServer()
     {
+        LoadCredentials();
         StartCoroutine(UploadFileCoroutine((success, error) =>
         {
             // This block will be executed AFTER the coroutine finishes
@@ -77,6 +78,7 @@ public class ExportSystem : MonoBehaviour
         if (credentials == null || string.IsNullOrEmpty(credentials.ADMIN_USER) || string.IsNullOrEmpty(credentials.ADMIN_PASSWORD))
         {
             Debug.LogError("Missing credentials");
+            
             callback(false, "Missing credentials");
             yield break;
         }
@@ -103,12 +105,13 @@ public class ExportSystem : MonoBehaviour
     // Load credentials from a JSON file
     private void LoadCredentials()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, "credentials.json");
+        string path = Path.Combine(Application.dataPath, "env/credentials.json");
 
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
             credentials = JsonUtility.FromJson<AdminCredentials>(json);
+           
             Debug.Log("Credentials loaded successfully.");
         }
         else

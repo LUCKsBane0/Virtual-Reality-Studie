@@ -27035,6 +27035,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.099999994, z: 2}
   m_Center: {x: 1, y: -0.049999997, z: 1}
+--- !u!114 &962972839 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1194861643983471926, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
+  m_PrefabInstance: {fileID: 5010810971825162743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fa5e6bd3ca4bf4c9ed93959dbce900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &964288146 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1241570235972288, guid: 9d12464ab7195104c9a0ed50a08ccbea, type: 3}
@@ -53947,7 +53958,7 @@ PrefabInstance:
       value: "Auf diesem Weg musst du darauf achten, nicht von den Gegnern getroffen
         zu werden. Die spitzen Gegner bewegen sich immer vor und zur\xFCck, die Kugeln
         bewegen sich auf dich zu, sobald du ihnen zu nahe kommst. Diesen musst du
-        aktiv ausweichen."
+        aktiv ausweichen. Du h\xE4ltst 3 Treffer aus bis du stirbst."
       objectReference: {fileID: 0}
     - target: {fileID: 8828412226290382460, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_AnchorMax.y
@@ -60394,9 +60405,17 @@ PrefabInstance:
       value: XR Origin (XR Rig)
       objectReference: {fileID: 0}
     - target: {fileID: 4067975420084621504, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
+      propertyPath: maxHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067975420084621504, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
       propertyPath: damageVolume
       value: 
       objectReference: {fileID: 2035205391}
+    - target: {fileID: 4067975420084621504, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
+      propertyPath: currentHealth
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4067975420084621504, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
       propertyPath: deathCheckpoint
       value: 
@@ -60405,6 +60424,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 980185422}
+    - target: {fileID: 4810279483665387150, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
+      propertyPath: armSwingLocomotion
+      value: 
+      objectReference: {fileID: 962972839}
     - target: {fileID: 7161935029805329802, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.842825

@@ -35,7 +35,7 @@ public class MoveSound : MonoBehaviour
     {
         // Adjust stepInterval based on current movement speed if armSwingLocomotion is assigned
         stepInterval = armSwingLocomotion != null
-            ? baseStepInterval / Mathf.Clamp(armSwingLocomotion.currentMovementSpeed / armSwingLocomotion.maxSpeed, 0.3f, 1f)
+            ? baseStepInterval / Mathf.Clamp(armSwingLocomotion.currentMovementSpeed / armSwingLocomotion.maxSpeed, 0.6f, 2f)
             : baseStepInterval;
 
         // Calculate the distance the player has moved since the last frame
