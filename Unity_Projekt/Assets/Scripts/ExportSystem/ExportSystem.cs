@@ -1,22 +1,27 @@
-using System.Collections;
 using UnityEngine;
-using System.IO;
+using System.Collections;
 using UnityEngine.Networking;
+using System.IO;
 using System.Collections.Generic;
+
+[System.Serializable]
+public class AdminCredentials
+{
+    public string ADMIN_USER;
+    public string ADMIN_PASSWORD;
+}
 
 public class ExportSystem : MonoBehaviour
 {
     public StudienTeilnehmer personData; // Assign in Unity Inspector
     public string fileName = "personData.json";
     public string uploadUrl = "http://192.168.178.43:3000/upload"; // URL of your local server
-
+    private AdminCredentials credentials;
     private bool uploadSuccess;  // Store result of the upload
     private string uploadError;  // Store error message if any
-
     private void Awake()
     {
-        //DontDestroyOnLoad(this.gameObject);
-        //ResetPersonData();
+        LoadCredentials();
     }
 
     // Method to export data from the ScriptableObject to JSON
@@ -68,6 +73,17 @@ public class ExportSystem : MonoBehaviour
         UnityWebRequest request = UnityWebRequest.Post(uploadUrl, form);
         request.timeout = 10;  // Timeout after 10 seconds
 
+        // Adding Basic Authentication header
+        if (credentials == null || string.IsNullOrEmpty(credentials.ADMIN_USER) || string.IsNullOrEmpty(credentials.ADMIN_PASSWORD))
+        {
+            Debug.LogError("Missing credentials");
+            callback(false, "Missing credentials");
+            yield break;
+        }
+
+        string encodedCredentials = System.Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(credentials.ADMIN_USER + ":" + credentials.ADMIN_PASSWORD));
+        request.SetRequestHeader("Authorization", "Basic " + encodedCredentials);
+
         Debug.Log("Sending file to server...");
 
         // Send the request and yield until complete
@@ -76,16 +92,28 @@ public class ExportSystem : MonoBehaviour
         // Determine success or failure
         if (request.result == UnityWebRequest.Result.Success)
         {
-            // Upload succeeded
-            uploadSuccess = true;
             callback(true, null);  // Notify success
         }
         else
         {
-            // Upload failed
-            uploadSuccess = false;
-            uploadError = request.error;
             callback(false, request.error);  // Notify failure
+        }
+    }
+
+    // Load credentials from a JSON file
+    private void LoadCredentials()
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, "credentials.json");
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            credentials = JsonUtility.FromJson<AdminCredentials>(json);
+            Debug.Log("Credentials loaded successfully.");
+        }
+        else
+        {
+            Debug.LogError("Credentials file not found at " + path);
         }
     }
 
@@ -123,10 +151,12 @@ public class ExportSystem : MonoBehaviour
 
         Debug.Log("PersonData has been reset with a new ID: " + personData.ID);
     }
+
     public void setFileName(string fileName_)
     {
         fileName = fileName_;
     }
+
     public void setUploadURL(string uploadURL_)
     {
         uploadUrl = uploadURL_;

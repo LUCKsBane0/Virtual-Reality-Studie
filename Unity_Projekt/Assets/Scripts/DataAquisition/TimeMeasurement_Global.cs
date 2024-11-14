@@ -12,13 +12,10 @@ public class TimeMeasurement_Global : MonoBehaviour
 
     private void Start()
     {
-        // Find the TextMeshProUGUI component attached to the "Text" child object
 
-        UpdateTimerText(); // Initialize the timer text
+        UpdateTimerText();
     }
 
-    // When the player enters the trigger, start the timer
- 
 
     // Start the timer
     public void StartTimer()

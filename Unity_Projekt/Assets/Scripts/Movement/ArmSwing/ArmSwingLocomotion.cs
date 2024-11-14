@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 
 public class ArmSwingLocomotion : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class ArmSwingLocomotion : MonoBehaviour
     [Header("Speed Range")]
     public float minSpeed = 2.0f;
     public float maxSpeed = 10.0f;
+    public float speedSmoothing = 0.1f; // New: Smoothing factor for speed transition
 
     [Header("Movement Mode")]
     public bool useArms = true;
@@ -32,13 +32,14 @@ public class ArmSwingLocomotion : MonoBehaviour
 
     private float movementBuffer;
     private bool isMovingWithArms = false;
-    private float currentMovementSpeed;
+    public float currentMovementSpeed;
+    private float targetMovementSpeed; // New: Target speed for smooth transition
 
     private Vector3[] movementDirections;
     private Vector3 currentMovementDirection;
 
     [Header("Smoothing Settings")]
-    public float directionSmoothing = 0.1f; // Adjust this value for smoothness
+    public float directionSmoothing = 0.1f;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class ArmSwingLocomotion : MonoBehaviour
         }
 
         currentMovementSpeed = minSpeed;
+        targetMovementSpeed = minSpeed; // Initialize target speed
         currentMovementDirection = Vector3.zero;
 
         // Generate 16 predefined movement directions (every 22.5 degrees)
@@ -94,14 +96,17 @@ public class ArmSwingLocomotion : MonoBehaviour
             {
                 float adjustedSpeed = combinedHandSpeed * swingSensitivity;
                 float speedPercentage = Mathf.Clamp01(adjustedSpeed / armSpeedThreshold);
-                currentMovementSpeed = Mathf.Lerp(minSpeed, maxSpeed, speedPercentage);
+                targetMovementSpeed = Mathf.Lerp(minSpeed, maxSpeed, speedPercentage); // Set target speed
 
                 // Get the target direction and smooth it
                 Vector3 targetDirection = useArms ? GetCombinedControllerForwardDirection() : GetCameraForwardDirection();
                 targetDirection = GetClosestDirection(targetDirection);
                 currentMovementDirection = Vector3.Lerp(currentMovementDirection, targetDirection, directionSmoothing);
 
+                // Smoothly transition the movement speed
+                currentMovementSpeed = Mathf.Lerp(currentMovementSpeed, targetMovementSpeed, speedSmoothing);
                 characterController.SimpleMove(currentMovementDirection * currentMovementSpeed);
+
                 movementBuffer = movementBufferDuration;
                 isMovingWithArms = true;
 
@@ -116,7 +121,10 @@ public class ArmSwingLocomotion : MonoBehaviour
             targetDirection = GetClosestDirection(targetDirection);
             currentMovementDirection = Vector3.Lerp(currentMovementDirection, targetDirection, directionSmoothing);
 
+            // Continue moving with smoothed speed
+            currentMovementSpeed = Mathf.Lerp(currentMovementSpeed, targetMovementSpeed, speedSmoothing);
             characterController.SimpleMove(currentMovementDirection * currentMovementSpeed);
+
             movementBuffer -= Time.deltaTime;
         }
 

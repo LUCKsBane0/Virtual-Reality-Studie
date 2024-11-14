@@ -6,6 +6,11 @@ using System.Collections;
 
 public class HealthSystem : MonoBehaviour
 {
+
+    [Header("Player Transform")]
+
+    public Transform playerTransform;
+
     [Header("Health Settings")]
     [Tooltip("The maximum health of the player.")]
     public int maxHealth = 100;
@@ -121,8 +126,8 @@ public class HealthSystem : MonoBehaviour
         }
 
         // Teleport the player to the death checkpoint
-        transform.position = deathCheckpoint.position;
-        transform.rotation = deathCheckpoint.rotation;
+        playerTransform.position = deathCheckpoint.position;
+        playerTransform.rotation = deathCheckpoint.rotation;
 
         // Fade in the screen (decrease vignette intensity)
         timer = 0f;

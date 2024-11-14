@@ -17,18 +17,27 @@ public class MoveSound : MonoBehaviour
     public int currentSet = 0;  // Index to select which set of sounds to use
 
     [Header("Step Timing")]
-    public float stepInterval = 0.5f;  // Time between steps
+    public float baseStepInterval = 0.5f;  // Base time between steps at minimum speed
+    private float stepInterval;             // Adjusted interval based on speed
     private float stepTimer;
     private Vector3 previousPosition;
 
+    [Header("Dependencies")]
+    public ArmSwingLocomotion armSwingLocomotion;  // Reference to the arm swing locomotion (optional)
+
     void Start()
     {
-        stepTimer = stepInterval;
+        stepTimer = baseStepInterval;
         previousPosition = transform.position;  // Store the initial position
     }
 
     void Update()
     {
+        // Adjust stepInterval based on current movement speed if armSwingLocomotion is assigned
+        stepInterval = armSwingLocomotion != null
+            ? baseStepInterval / Mathf.Clamp(armSwingLocomotion.currentMovementSpeed / armSwingLocomotion.maxSpeed, 0.3f, 1f)
+            : baseStepInterval;
+
         // Calculate the distance the player has moved since the last frame
         float distanceMoved = Vector3.Distance(previousPosition, transform.position);
 
