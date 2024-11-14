@@ -11,6 +11,7 @@
 /Unity_Projekt/[Uu]ser[Ss]ettings/
 
 /Unity_Projekt/Assets/env/Env_not_home.asset
+/Unity_Projekt/Assets/env/credentials.json
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /Unity_Projekt/[Mm]emoryCaptures/
