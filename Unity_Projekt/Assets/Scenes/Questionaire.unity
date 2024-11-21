@@ -2386,6 +2386,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4631745497546892530, guid: 27cffd37c6e234f469d38ae0e164f73b, type: 3}
+      propertyPath: m_text
+      value: "Alles klar, vielen Dank!\nJetzt k\xF6nnen wir mit der Studie beginnen!\nAchtung,
+        wenn du l\xE4nger als sieben Minuten f\xFCr ein Szenario brauchst, wird es
+        abgebrochen."
+      objectReference: {fileID: 0}
     - target: {fileID: 4669501902922935912, guid: 27cffd37c6e234f469d38ae0e164f73b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

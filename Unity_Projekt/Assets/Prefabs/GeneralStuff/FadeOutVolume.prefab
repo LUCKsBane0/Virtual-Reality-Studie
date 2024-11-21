@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 149880077607165648}
   m_Layer: 0
   m_Name: FadeOutVolume
-  m_TagString: Untagged
+  m_TagString: Volume
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

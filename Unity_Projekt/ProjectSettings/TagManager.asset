@@ -12,6 +12,7 @@ TagManager:
   - Mud_Floor
   - Snow_Floor
   - HitTarget
+  - Volume
   layers:
   - Default
   - TransparentFX

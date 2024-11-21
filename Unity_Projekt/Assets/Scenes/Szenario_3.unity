@@ -8334,6 +8334,10 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 2132551879}
+    - target: {fileID: 7642956694482310181, guid: 3e270e727531ed844b1300f99ca6aaac, type: 3}
+      propertyPath: deathCheckpoint
+      value: 
+      objectReference: {fileID: 195012350}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56517,6 +56521,10 @@ PrefabInstance:
     - target: {fileID: 7135494877580388349, guid: d2a0d5ffc281516478d99465d46d8d06, type: 3}
       propertyPath: m_Name
       value: FadeOutVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135494877580388349, guid: d2a0d5ffc281516478d99465d46d8d06, type: 3}
+      propertyPath: m_TagString
+      value: Volume
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
