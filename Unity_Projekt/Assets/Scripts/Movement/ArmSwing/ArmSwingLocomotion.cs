@@ -110,7 +110,7 @@ public class ArmSwingLocomotion : MonoBehaviour
                 movementBuffer = movementBufferDuration;
                 isMovingWithArms = true;
 
-                Debug.Log($"Swing Speed Percentage: {speedPercentage * 100}%, Movement Speed: {currentMovementSpeed} m/s");
+               // Debug.Log($"Swing Speed Percentage: {speedPercentage * 100}%, Movement Speed: {currentMovementSpeed} m/s");
             }
         }
 

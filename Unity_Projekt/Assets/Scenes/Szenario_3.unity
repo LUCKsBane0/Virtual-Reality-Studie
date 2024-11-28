@@ -457,6 +457,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - state: 6
+    onStateEntered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 301528531}
+          m_TargetAssemblyTypeName: TimeMeasurement_Global, Assembly-CSharp
+          m_MethodName: StopTimer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1623679382}
+          m_TargetAssemblyTypeName: SceneManagerProxy, Assembly-CSharp
+          m_MethodName: LoadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Evaluation
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &14410145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27113,6 +27141,10 @@ PrefabInstance:
     - target: {fileID: 3319428360084330755, guid: e99838efa6a79d44bb14f0288c3618c5, type: 3}
       propertyPath: PATH_NAME
       value: SZENARIO_3_EASY
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685806505124092227, guid: e99838efa6a79d44bb14f0288c3618c5, type: 3}
+      propertyPath: m_Size.x
+      value: 20.66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

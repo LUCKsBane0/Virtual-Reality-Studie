@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79e99fef5bb3e643995a5a4e4b10ff8, type: 3}
   m_Name: Env_home
   m_EditorClassIdentifier: 
-  scenario_count: 2
-  exportIPAddress: http://localhost:3000
+  scenario_count: 1
+  exportIPAddress: http://192.168.178.43:7331/upload
   exportFileName: personData.json
   study_group: NON_REALISTIC
   study_type: PILOT

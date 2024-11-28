@@ -12,8 +12,11 @@ public class SetExportData : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name +" " +XR_Origin_Name +" "+ hasEntered);
+
         if(other.gameObject.name == XR_Origin_Name && !hasEntered)
         {
+            Debug.Log("Exporting Path Choice Data");
             hasEntered = true;
             exportSystem.AddPfad(PATH_NAME);
             exportSystem.AddZoegernZeit(time.getElapsedTime());
@@ -23,6 +26,7 @@ public class SetExportData : MonoBehaviour
     void Start()
     {
         exportSystem = Object.FindAnyObjectByType<ExportSystem>();
+        hasEntered = false;
         time = Object.FindAnyObjectByType<TimeMeasurement_Local>();
     }
 
