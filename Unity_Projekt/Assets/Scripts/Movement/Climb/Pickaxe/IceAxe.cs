@@ -6,6 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class IceAxe : MonoBehaviour
 {
+    [SerializeField] private IceAxe OtherIceAxe;
+    [SerializeField] private CharacterController characterController;
     [SerializeField] private IceAxeEnableMovement IceAxeEnableMovement;
     [SerializeField] private IceAxePositioner IceAxePositioner;
     [SerializeField] private IceAxeSoundTrigger IceAxeSoundTrigger;
@@ -50,8 +52,10 @@ public class IceAxe : MonoBehaviour
         Vector3 handMovement = currentHandPosition - lastHandPosition;
 
         // Move the player based on hand movement
-        player.position -= handMovement;
-        lastHandPosition = currentHandPosition;
+        if (characterController != null)
+        {
+            characterController.Move(-handMovement);
+        };
 
         Debug.Log("Player is climbing.");
     }
@@ -68,6 +72,8 @@ public class IceAxe : MonoBehaviour
              colliderAudioClimb.bounds.Intersects(iceWall.GetComponent<Collider>().bounds)))
         {
             IceAxePositioner.Detach();
+            lastHandPosition = GetHandPosition();
+            OtherIceAxe.StopClimb();
             climbing = true;
             Debug.Log("Starting climb!");
 
@@ -83,3 +89,9 @@ public class IceAxe : MonoBehaviour
         }
     }
 }
+
+
+
+/** This currently doesnt work right because both want to climb at the same time
+ *  write a manager that stores is climbing overall and then if one of them achieves climb state switches based on 1 button input
+**/
