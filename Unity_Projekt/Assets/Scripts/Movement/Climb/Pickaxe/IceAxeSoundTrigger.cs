@@ -6,6 +6,7 @@ public class IceAxeSoundTrigger : MonoBehaviour
     public AudioClip[] exitSounds;  // Array of audio clips for exiting ice
     public GameObject iceWallObject; // Assign the specific object in the Inspector (To only check for IceWall collisions)
     private AudioSource audioSource;
+    private bool IsInserted;
 
     private void Start()
     {
@@ -19,18 +20,23 @@ public class IceAxeSoundTrigger : MonoBehaviour
         if (other.gameObject == iceWallObject)
         {
             PlayRandomSound(enterSounds); // Play a random enter sound
+            IsInserted = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-
+    public void PlayExitSound()
     {
-        // Only respond to collisions with the specific object
-        if (other.gameObject == targetObject)
+        PlayRandomSound(exitSounds);
+        IsInserted = false;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (IsInserted && other.gameObject == iceWallObject)
         {
-            PlayRandomSound(exitSounds); // Play a random exit sound
+            PlayExitSound();
         }
     }
+
 
     private void PlayRandomSound(AudioClip[] soundArray)
     {
