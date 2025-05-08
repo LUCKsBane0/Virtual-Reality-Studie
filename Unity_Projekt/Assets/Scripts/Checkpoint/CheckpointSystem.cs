@@ -55,7 +55,18 @@ public class CheckpointSystem : MonoBehaviour
         // Check if the player entered the GameOverZone
         if (other.gameObject.name == "XR Origin (XR Rig)" && !isFading)
         {
-            StartCoroutine(HandleGameOverZone());
+            if (other.gameObject.GetComponentInChildren<HealthSystem>() != null)
+            {
+                if(other.gameObject.GetComponentInChildren<HealthSystem>().currentHealth > 0)
+                {
+                    StartCoroutine(HandleGameOverZone());
+                }
+            }
+            else
+            {
+                StartCoroutine(HandleGameOverZone());
+            }
+            
         }
     }
 
