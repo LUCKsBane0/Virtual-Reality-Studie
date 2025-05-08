@@ -3241,6 +3241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1975683500}
   - component: {fileID: 1975683501}
+  - component: {fileID: 1975683502}
   m_Layer: 0
   m_Name: IceClimbManagement
   m_TagString: Untagged
@@ -3279,6 +3280,18 @@ MonoBehaviour:
   armSwingLocomotion: {fileID: 126345038}
   IceAxeLeft: {fileID: 693963690}
   IceAxeRight: {fileID: 437349220}
+--- !u!114 &1975683502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975683499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30cff0281b3c23419dfaa515e9128a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1992213252
 GameObject:
   m_ObjectHideFlags: 0

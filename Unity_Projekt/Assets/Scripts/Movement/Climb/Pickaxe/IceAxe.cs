@@ -19,6 +19,7 @@ public class IceAxe : MonoBehaviour
     [SerializeField] private Transform hand;
 
     private bool climbing = false;
+    private bool gripPressedLastFrame = false;
     private Vector3 lastHandPosition;
 
     void Start()
@@ -38,6 +39,16 @@ public class IceAxe : MonoBehaviour
         IceAxeSoundTrigger.PlayExitSound();
         climbing = false;
         Debug.Log("Stopped climbing!");
+    }
+
+    public void StartClimb()
+    {
+        IceAxePositioner.Detach();
+        lastHandPosition = GetHandPosition();
+        OtherIceAxe.StopClimb();
+        climbing = true;
+        IceAxeEnableMovement.KillMovement();
+        Debug.Log("Started climb!");
     }
 
 
@@ -62,31 +73,38 @@ public class IceAxe : MonoBehaviour
 
     void Update()
     {
+        float gripValue = gripAction.action.ReadValue<float>();
+        bool gripPressed = gripValue > 0.1f;
+
+        
+        if (gripPressed && !gripPressedLastFrame)
+        {
+            IceAxeClimbManager.RegisterTriggerPress(this);
+        }
+
+        if (!climbing && gripPressed &&
+            (colliderSecureClimb.bounds.Intersects(iceWall.GetComponent<Collider>().bounds) ||
+             colliderAudioClimb.bounds.Intersects(iceWall.GetComponent<Collider>().bounds)))
+        {
+            if (IceAxeClimbManager.CanClimb(this))
+            {
+                StartClimb();
+            }
+        }
+
+        if (climbing && !gripPressed)
+        {
+            IceAxeEnableMovement.CheckClimb();
+            StopClimb();
+            IceAxeClimbManager.Clear();
+        }
+
         if (climbing)
         {
             Climb();
         }
 
-        if (!climbing && gripAction.action.ReadValue<float>() > 0.1f &&
-            (colliderSecureClimb.bounds.Intersects(iceWall.GetComponent<Collider>().bounds) ||
-             colliderAudioClimb.bounds.Intersects(iceWall.GetComponent<Collider>().bounds)))
-        {
-            IceAxePositioner.Detach();
-            lastHandPosition = GetHandPosition();
-            OtherIceAxe.StopClimb();
-            climbing = true;
-            Debug.Log("Starting climb!");
-
-            IceAxeEnableMovement.KillMovement();
-        }
-
-
-
-        if (climbing && gripAction.action.ReadValue<float>() <= 0.1f)
-        {
-            IceAxeEnableMovement.CheckClimb();
-            StopClimb();
-        }
+        gripPressedLastFrame = gripPressed;
     }
 }
 

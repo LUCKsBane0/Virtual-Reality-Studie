@@ -12,7 +12,7 @@ public class IceAxeAreaExit : MonoBehaviour
         // Check if the exiting object is the player
         if (other.CompareTag("Player"))
         {
-            IceAxeToggle.ToggleAxesOff();
+            IceAxeManager.ToggleAxesOff();
         }
     }
 
@@ -22,7 +22,7 @@ public class IceAxeAreaExit : MonoBehaviour
         // Check if the exiting object is the player
         if (other.CompareTag("Player"))
         {
-            IceAxeToggle.ToggleAxesOn();
+            IceAxeManager.ToggleAxesOn();
         }
     }
 }
