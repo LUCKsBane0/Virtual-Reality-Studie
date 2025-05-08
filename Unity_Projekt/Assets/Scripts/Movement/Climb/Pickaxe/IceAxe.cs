@@ -17,6 +17,7 @@ public class IceAxe : MonoBehaviour
     [SerializeField] private GameObject iceWall;
     [SerializeField] private Transform player;
     [SerializeField] private Transform hand;
+    [SerializeField] private IceAxeClimbManager IceAxeClimbManager;
 
     private bool climbing = false;
     private bool gripPressedLastFrame = false;
@@ -28,8 +29,8 @@ public class IceAxe : MonoBehaviour
     }
 
     public bool IsClimbing()
-    { 
-        return climbing; 
+    {
+        return climbing;
     }
 
 
@@ -76,7 +77,7 @@ public class IceAxe : MonoBehaviour
         float gripValue = gripAction.action.ReadValue<float>();
         bool gripPressed = gripValue > 0.1f;
 
-        
+
         if (gripPressed && !gripPressedLastFrame)
         {
             IceAxeClimbManager.RegisterTriggerPress(this);
@@ -107,9 +108,3 @@ public class IceAxe : MonoBehaviour
         gripPressedLastFrame = gripPressed;
     }
 }
-
-
-
-/** This currently doesnt work right because both want to climb at the same time
- *  write a manager that stores is climbing overall and then if one of them achieves climb state switches based on 1 button input
-**/

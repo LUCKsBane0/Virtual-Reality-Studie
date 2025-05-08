@@ -1104,6 +1104,7 @@ MonoBehaviour:
   iceWall: {fileID: 1498530992}
   player: {fileID: 1755402771}
   hand: {fileID: 154638640}
+  IceAxeClimbManager: {fileID: 1975683502}
 --- !u!114 &437349221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,7 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544a0f729636d6141a55febd51b21449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IceAxeToggle: {fileID: 0}
+  IceAxeManager: {fileID: 0}
 --- !u!1001 &527136725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1452,6 +1453,7 @@ MonoBehaviour:
   iceWall: {fileID: 1498530992}
   player: {fileID: 1755402771}
   hand: {fileID: 154638640}
+  IceAxeClimbManager: {fileID: 1975683502}
 --- !u!1001 &714600132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3230,7 +3232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544a0f729636d6141a55febd51b21449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IceAxeToggle: {fileID: 0}
+  IceAxeManager: {fileID: 0}
 --- !u!1 &1975683499
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,7 +3369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544a0f729636d6141a55febd51b21449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IceAxeToggle: {fileID: 0}
+  IceAxeManager: {fileID: 0}
 --- !u!114 &2068338158 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2160399498037283214, guid: e6f6c188a61e3264ab112bf68d99c30c, type: 3}

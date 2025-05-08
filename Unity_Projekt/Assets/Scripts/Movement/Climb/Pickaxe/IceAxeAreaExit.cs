@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IceAxeAreaExit : MonoBehaviour
 {
-    [SerializeField] private ToggleIceAxe IceAxeToggle;
+    [SerializeField] private ToggleIceAxe IceAxeManager;
 
     void OnTriggerExit(Collider other)
     {

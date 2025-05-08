@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class IceAxeClimbManager
+public class IceAxeClimbManager : MonoBehaviour
 {
     private static IceAxe lastPressedAxe;
 
