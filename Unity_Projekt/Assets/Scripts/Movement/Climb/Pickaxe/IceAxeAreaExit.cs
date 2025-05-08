@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class IceAxeAreaExit : MonoBehaviour
 {
-    [SerializeField] private ToggleIceAxe IceAxeManager;
+    [SerializeField] private ToggleIceAxe IceAxeToggle;
 
     void OnTriggerExit(Collider other)
     {
         // Check if the exiting object is the player
         if (other.CompareTag("Player"))
         {
-            IceAxeManager.ToggleAxesOff();
+            IceAxeToggle.ToggleAxesOff();
         }
     }
 
@@ -22,7 +22,7 @@ public class IceAxeAreaExit : MonoBehaviour
         // Check if the exiting object is the player
         if (other.CompareTag("Player"))
         {
-            IceAxeManager.ToggleAxesOn();
+            IceAxeToggle.ToggleAxesOn();
         }
     }
 }

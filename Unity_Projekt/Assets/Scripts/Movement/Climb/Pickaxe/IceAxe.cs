@@ -52,7 +52,6 @@ public class IceAxe : MonoBehaviour
         Debug.Log("Started climb!");
     }
 
-
     private Vector3 GetHandPosition()
     {
         return hand.position;
