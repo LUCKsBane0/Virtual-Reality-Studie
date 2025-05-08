@@ -25498,6 +25498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 38054559778610588, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1155462302264110704, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig)
