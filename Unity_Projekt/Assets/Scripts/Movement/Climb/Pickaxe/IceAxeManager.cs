@@ -1,29 +1,82 @@
 using UnityEngine;
 
-public class ToggleIceAxe : MonoBehaviour
+public class IceAxeManager : MonoBehaviour
 {
-    public GameObject iceAxeR; // Assign the Ice Axe GameObjects in the Inspector
+    [Header("Axe References")]
+    public GameObject iceAxeR;
     public GameObject iceAxeL;
+    public IceAxe IceAxeLeft;
+    public IceAxe IceAxeRight;
 
+    [Header("Movement Systems")]
+    public GravityController gravityController;
+    public ArmSwingLocomotion armSwingLocomotion;
+
+    private IceAxe lastPressedAxe;
     private bool isAxesActive = false;
 
+    // === Axe Toggling ===
     public void ToggleAxes()
     {
         isAxesActive = !isAxesActive;
-        iceAxeR.SetActive(isAxesActive);
-        iceAxeL.SetActive(isAxesActive);
+        SetAxesActive(isAxesActive);
     }
+
     public void ToggleAxesOn()
     {
         isAxesActive = true;
-        iceAxeR.SetActive(true);
-        iceAxeL.SetActive(true);
+        SetAxesActive(true);
     }
 
     public void ToggleAxesOff()
     {
         isAxesActive = false;
-        iceAxeR.SetActive(false);
-        iceAxeL.SetActive(false);
+        SetAxesActive(false);
+    }
+
+    private void SetAxesActive(bool active)
+    {
+        if (iceAxeR != null) iceAxeR.SetActive(active);
+        if (iceAxeL != null) iceAxeL.SetActive(active);
+    }
+
+    // === Climb Input Handling ===
+    public void RegisterTriggerPress(IceAxe axe)
+    {
+        lastPressedAxe = axe;
+    }
+
+    public bool CanClimb(IceAxe axe)
+    {
+        return axe == lastPressedAxe;
+    }
+
+    public void ClearClimbState()
+    {
+        lastPressedAxe = null;
+    }
+
+    // === Movement Handling ===
+    public void KillMovement()
+    {
+        gravityController?.DisableGravity();
+        if (armSwingLocomotion != null) armSwingLocomotion.enable = false;
+    }
+
+    public void ReviveMovement()
+    {
+        gravityController?.EnableGravity();
+        if (armSwingLocomotion != null) armSwingLocomotion.enable = true;
+    }
+
+    public void CheckClimb()
+    {
+        if (IceAxeLeft != null && IceAxeRight != null)
+        {
+            if (!IceAxeLeft.IsClimbing() && !IceAxeRight.IsClimbing())
+            {
+                ReviveMovement();
+            }
+        }
     }
 }

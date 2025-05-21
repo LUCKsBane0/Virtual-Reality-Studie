@@ -8,48 +8,52 @@ public class IceAxe : MonoBehaviour
 {
     [SerializeField] private IceAxe OtherIceAxe;
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private IceAxeEnableMovement IceAxeEnableMovement;
     [SerializeField] private IceAxePositioner IceAxePositioner;
     [SerializeField] private IceAxeSoundTrigger IceAxeSoundTrigger;
     [SerializeField] private InputActionProperty gripAction;
     [SerializeField] private BoxCollider colliderSecureClimb;
     [SerializeField] private BoxCollider colliderAudioClimb;
-    [SerializeField] private GameObject iceWall;
     [SerializeField] private Transform player;
     [SerializeField] private Transform hand;
-    [SerializeField] private IceAxeClimbManager IceAxeClimbManager;
+    [SerializeField] private IceAxeManager IceAxeManager;
+    [SerializeField] private float gripThreshold = 0.5f;
+    [SerializeField] private bool debugLogs = false;
+    [SerializeField] private LayerMask climbableLayers;
+    [SerializeField] private float climbCooldown = 0.25f;
 
     private bool climbing = false;
     private bool gripPressedLastFrame = false;
     private Vector3 lastHandPosition;
-
-    void Start()
-    {
-        climbing = false;
-    }
+    private float lastClimbTime = -1f;
 
     public bool IsClimbing()
     {
         return climbing;
     }
 
-
     public void StopClimb()
     {
         IceAxePositioner.Attach();
         IceAxeSoundTrigger.PlayExitSound();
         climbing = false;
-        Debug.Log("Stopped climbing!");
+        if (debugLogs) Debug.Log("Stopped climbing!");
     }
 
     public void StartClimb()
     {
         IceAxePositioner.Detach();
         lastHandPosition = GetHandPosition();
-        OtherIceAxe.StopClimb();
+
+        if (OtherIceAxe != null && OtherIceAxe.IsClimbing())
+        {
+            OtherIceAxe.StopClimb();
+        }
+
         climbing = true;
-        IceAxeEnableMovement.KillMovement();
-        Debug.Log("Started climb!");
+        lastClimbTime = Time.time;
+        IceAxeManager.KillMovement();
+
+        if (debugLogs) Debug.Log("Started climb!");
     }
 
     private Vector3 GetHandPosition()
@@ -62,31 +66,37 @@ public class IceAxe : MonoBehaviour
         Vector3 currentHandPosition = GetHandPosition();
         Vector3 handMovement = currentHandPosition - lastHandPosition;
 
-        // Move the player based on hand movement
         if (characterController != null)
         {
             characterController.Move(-handMovement);
-        };
+            lastHandPosition = currentHandPosition;
+        }
 
-        Debug.Log("Player is climbing.");
+        if (debugLogs) Debug.Log("Player is climbing.");
+    }
+
+    private bool IsClimbableTouching()
+    {
+        Collider[] hits = Physics.OverlapBox(colliderSecureClimb.bounds.center, colliderSecureClimb.bounds.extents, colliderSecureClimb.transform.rotation, climbableLayers);
+        if (hits.Length > 0) return true;
+
+        hits = Physics.OverlapBox(colliderAudioClimb.bounds.center, colliderAudioClimb.bounds.extents, colliderAudioClimb.transform.rotation, climbableLayers);
+        return hits.Length > 0;
     }
 
     void Update()
     {
         float gripValue = gripAction.action.ReadValue<float>();
-        bool gripPressed = gripValue > 0.1f;
-
+        bool gripPressed = gripValue >= gripThreshold;
 
         if (gripPressed && !gripPressedLastFrame)
         {
-            IceAxeClimbManager.RegisterTriggerPress(this);
+            IceAxeManager.RegisterTriggerPress(this);
         }
 
-        if (!climbing && gripPressed &&
-            (colliderSecureClimb.bounds.Intersects(iceWall.GetComponent<Collider>().bounds) ||
-             colliderAudioClimb.bounds.Intersects(iceWall.GetComponent<Collider>().bounds)))
+        if (!climbing && gripPressed && Time.time - lastClimbTime > climbCooldown && IsClimbableTouching())
         {
-            if (IceAxeClimbManager.CanClimb(this))
+            if (IceAxeManager.CanClimb(this))
             {
                 StartClimb();
             }
@@ -94,9 +104,9 @@ public class IceAxe : MonoBehaviour
 
         if (climbing && !gripPressed)
         {
-            IceAxeEnableMovement.CheckClimb();
+            IceAxeManager.CheckClimb();
             StopClimb();
-            IceAxeClimbManager.Clear();
+            IceAxeManager.ClearClimbState();
         }
 
         if (climbing)

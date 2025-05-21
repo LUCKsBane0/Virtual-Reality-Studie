@@ -1100,6 +1100,8 @@ MonoBehaviour:
   player: {fileID: 1755402771}
   hand: {fileID: 154638640}
   IceAxeClimbManager: {fileID: 1975683502}
+  gripThreshold: 0.5
+  debugLogs: 0
 --- !u!114 &437349221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1449,6 +1451,8 @@ MonoBehaviour:
   player: {fileID: 1755402771}
   hand: {fileID: 154638640}
   IceAxeClimbManager: {fileID: 1975683502}
+  gripThreshold: 0.5
+  debugLogs: 0
 --- !u!1001 &714600132
 PrefabInstance:
   m_ObjectHideFlags: 0
