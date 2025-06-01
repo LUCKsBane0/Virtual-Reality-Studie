@@ -2771,6 +2771,38 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
       objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 3cb24fa14f6e7a240bfcf9cece04aaea, type: 3}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3515525765111070834, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -20378,6 +20410,38 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
       objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 514b56f5423542a4c9a7b37c3a67037f, type: 3}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3515525765111070834, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -22496,6 +22560,38 @@ PrefabInstance:
     - target: {fileID: 2727986738292891891, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: ee7be5f752cd66e47b4b58be8308e9f0, type: 3}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3515525765111070834, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
