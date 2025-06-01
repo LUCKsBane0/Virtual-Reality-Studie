@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Evaluation.unity
     guid: 8dbfa85209af68b46919146258416e0c
+  - enabled: 1
+    path: Assets/Scenes/Szenario_2.unity
+    guid: f3e3acb3d3d3e684fb227eba4c6e1a45
+  - enabled: 1
+    path: Assets/Scenes/Szenario_4.unity
+    guid: 85661a772d6d7c74d81c280871d68986
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
