@@ -2775,6 +2775,26 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 2: normal'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8383396029083070273, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -20325,6 +20345,26 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 1: Nicht Riskant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8383396029083070273, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -22423,6 +22463,26 @@ PrefabInstance:
     - target: {fileID: 3515525765111070834, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 3: Riskant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8383396029083070273, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27924,6 +27984,10 @@ PrefabInstance:
     - target: {fileID: 1159367070492942, guid: ac42f59b9c44c274b9612f7df5333cf3, type: 3}
       propertyPath: m_Name
       value: SM_Plant_Mushrooms_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159367070492942, guid: ac42f59b9c44c274b9612f7df5333cf3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4825834909521966, guid: ac42f59b9c44c274b9612f7df5333cf3, type: 3}
       propertyPath: m_LocalPosition.x
