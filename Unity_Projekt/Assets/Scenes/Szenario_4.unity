@@ -2771,9 +2771,61 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
       objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 3cb24fa14f6e7a240bfcf9cece04aaea, type: 3}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3515525765111070834, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 2: normal'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8383396029083070273, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -18187,8 +18239,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5106463744899960195, guid: 1afb5cb94ad648844a87a4da9f5e0c79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1297044947}
   m_SourcePrefab: {fileID: 100100000, guid: 1afb5cb94ad648844a87a4da9f5e0c79, type: 3}
+--- !u!1 &1297044946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5106463744899960195, guid: 1afb5cb94ad648844a87a4da9f5e0c79, type: 3}
+  m_PrefabInstance: {fileID: 1297044945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1297044947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297044946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279b2d0fd05da254fb3f30c505422220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateActions:
+  - state: 6
+    onStateEntered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1684836070}
+          m_TargetAssemblyTypeName: SceneManagerProxy, Assembly-CSharp
+          m_MethodName: LoadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Evaluation
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1299891776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20321,9 +20410,61 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
       objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 514b56f5423542a4c9a7b37c3a67037f, type: 3}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3515525765111070834, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 1: Nicht Riskant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8383396029083070273, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -22420,9 +22561,61 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TriggerOffWhiteOut
       objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: ee7be5f752cd66e47b4b58be8308e9f0, type: 3}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175493061234244812, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3515525765111070834, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_text
+      value: 'Weg 3: Riskant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSize
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423465609041435854, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8383396029083070273, guid: 3749770eedba4824d8f6323f2b924ced, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27924,6 +28117,10 @@ PrefabInstance:
     - target: {fileID: 1159367070492942, guid: ac42f59b9c44c274b9612f7df5333cf3, type: 3}
       propertyPath: m_Name
       value: SM_Plant_Mushrooms_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159367070492942, guid: ac42f59b9c44c274b9612f7df5333cf3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4825834909521966, guid: ac42f59b9c44c274b9612f7df5333cf3, type: 3}
       propertyPath: m_LocalPosition.x
