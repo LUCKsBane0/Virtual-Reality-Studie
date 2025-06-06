@@ -9,60 +9,76 @@ public class IceAxe : MonoBehaviour
     [SerializeField] private float gripThreshold = 0.8f;
 
     [Header("Sound")]
-    [SerializeField] private AudioClip[] enterSounds; // Array of audio clips for entering ice
-    [SerializeField] private AudioClip[] exitSounds;  // Array of audio clips for exiting ice
+    [SerializeField] private AudioClip[] enterSounds;
+    [SerializeField] private AudioClip[] exitSounds;
     private AudioSource audioSource;
 
-    [SerializeField] private IceAxe OtherIceAxe;
-
+    [Header("References")]
+    [SerializeField] private IceAxe otherIceAxe;
     [SerializeField] private List<Collider> allowedIceWalls;
     [SerializeField] private IceAxeManager iceAxeManager;
+    [SerializeField] private CharacterController characterController;   // <-- add via Inspector
 
-    private bool isInClimbZone = false;
-    private bool isAttached = false;
-    private float lastAttachTime = -Mathf.Infinity;
-    private bool gripWasPressed = false;
+    private bool isInClimbZone;
+    private bool isAttached;
+    private bool gripWasPressed;
+    private Vector3 lastControllerPos;   // track hand position while attached
 
-    private void Start()
+    void Start()
     {
-        // Get the AudioSource attached to this GameObject
         audioSource = GetComponent<AudioSource>();
     }
-    private void Update()
+
+    void Update()
     {
         float gripValue = gripAction.action.ReadValue<float>();
         bool gripPressed = gripValue >= gripThreshold;
 
         if (gripPressed && !gripWasPressed)
         {
-            OtherIceAxe.Detach();
+            otherIceAxe.Detach();
             TryAttach();
         }
         else if (!gripPressed && gripWasPressed)
         {
             Detach();
         }
-        if(isAttached)
-        {
-            //Do climb logic
-        }
 
+        if (isAttached)
+            HandleClimbMotion();   // move player
 
         gripWasPressed = gripPressed;
     }
 
+    /* ---------- climbing movement ---------- */
+    private void HandleClimbMotion()
+    {
+        // ? controller movement this frame
+        Vector3 delta = transform.position - lastControllerPos;
+        if (delta.y < 0f && characterController.isGrounded)
+        {
+            delta.y = 0f;
+
+        }
+
+        characterController.Move(-delta);
+
+
+        lastControllerPos = transform.position;
+    }
+
+    /* ---------- attach / detach ---------- */
     private void TryAttach()
     {
         if (!isInClimbZone) return;
 
         isAttached = true;
-        lastAttachTime = Time.time;
+        lastControllerPos = transform.position;   // reset tracker
         iceAxeManager?.KillMovement();
-
         Debug.Log($"{name}: Attached to IceWall.");
     }
 
-    private void Detach()
+    public void Detach()
     {
         if (!isAttached) return;
 
@@ -71,37 +87,30 @@ public class IceAxe : MonoBehaviour
         Debug.Log($"{name}: Detached.");
     }
 
-    private void OnTriggerEnter(Collider other)
+    /* ---------- trigger handling ---------- */
+    void OnTriggerEnter(Collider other)
     {
-        if (allowedIceWalls.Contains(other))
-        {
-            isInClimbZone = true;
-            PlayRandomSound(enterSounds);
-            Debug.Log($"{name}: Entered climb zone.");
-        }
+        if (!allowedIceWalls.Contains(other)) return;
+
+        isInClimbZone = true;
+        PlayRandomSound(enterSounds);
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (allowedIceWalls.Contains(other))
-        {
-            isInClimbZone = false;
-            PlayRandomSound(exitSounds);
-            Debug.Log($"{name}: Exited climb zone.");
-        }
-    }
-    private void PlayRandomSound(AudioClip[] soundArray)
-    {
-        if (soundArray.Length > 0)
-        {
-            Debug.Log($"played sound");
-            AudioClip clip = soundArray[Random.Range(0, soundArray.Length)];
-            audioSource.PlayOneShot(clip);
-        }
+        if (!allowedIceWalls.Contains(other)) return;
+
+        isInClimbZone = false;
+        PlayRandomSound(exitSounds);
     }
 
-    public bool IsClimbing()
+    /* ---------- audio ---------- */
+    private void PlayRandomSound(AudioClip[] clips)
     {
-        return isAttached;
+        if (clips.Length == 0) return;
+
+        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
     }
+
+    public bool IsClimbing() => isAttached;
 }

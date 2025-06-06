@@ -1028,12 +1028,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9a9e9b07c7660874aae52fabd5320951, type: 3}
   - {fileID: 8300000, guid: 5ea92218f61913345b224c08c524921a, type: 3}
   - {fileID: 8300000, guid: 51d0fd32cb9348d4c90e9e021b50f350, type: 3}
-  OtherIceAxe: {fileID: 437349220}
+  otherIceAxe: {fileID: 693963690}
   allowedIceWalls:
   - {fileID: 911983463}
   - {fileID: 714600146}
   - {fileID: 714600145}
   iceAxeManager: {fileID: 1975683501}
+  characterController: {fileID: 1315273267}
 --- !u!65 &437349221
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1496,12 +1497,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9a9e9b07c7660874aae52fabd5320951, type: 3}
   - {fileID: 8300000, guid: 5ea92218f61913345b224c08c524921a, type: 3}
   - {fileID: 8300000, guid: 51d0fd32cb9348d4c90e9e021b50f350, type: 3}
-  OtherIceAxe: {fileID: 437349220}
+  otherIceAxe: {fileID: 437349220}
   allowedIceWalls:
   - {fileID: 911983463}
   - {fileID: 714600146}
   - {fileID: 714600145}
   iceAxeManager: {fileID: 1975683501}
+  characterController: {fileID: 1315273267}
 --- !u!65 &693963691
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1723,6 +1725,10 @@ PrefabInstance:
       value: IceWall
       objectReference: {fileID: 0}
     - target: {fileID: -4007543208646099642, guid: 1ae456aa2c67fa74d80c102d2e997b78, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 745636556964949635, guid: 1ae456aa2c67fa74d80c102d2e997b78, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -2347,6 +2353,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -15.3, z: 0}
+--- !u!143 &1315273267 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 2674759610183070324, guid: a0f1e8e95d2e81e4b8c20c6dad956ff0, type: 3}
+  m_PrefabInstance: {fileID: 1137204318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1344132064
 GameObject:
   m_ObjectHideFlags: 0
