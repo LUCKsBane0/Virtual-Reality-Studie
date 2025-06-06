@@ -1,21 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IceAxeManager : MonoBehaviour
 {
     [Header("Axe References")]
-    public GameObject iceAxeR;
-    public GameObject iceAxeL;
-    public IceAxe IceAxeLeft;
-    public IceAxe IceAxeRight;
+    [SerializeField] private GameObject iceAxeR;
+    [SerializeField] private GameObject iceAxeL;
+    [SerializeField] private IceAxe IceAxeLeft;
+    [SerializeField] private IceAxe IceAxeRight;
 
     [Header("Movement Systems")]
-    public GravityController gravityController;
-    public ArmSwingLocomotion armSwingLocomotion;
+    [SerializeField] private GravityController gravityController;
+    [SerializeField] private ArmSwingLocomotion armSwingLocomotion;
 
-    private IceAxe lastPressedAxe;
     private bool isAxesActive = false;
 
+
+
     // === Axe Toggling ===
+    /**
     public void ToggleAxes()
     {
         isAxesActive = !isAxesActive;
@@ -39,22 +42,7 @@ public class IceAxeManager : MonoBehaviour
         if (iceAxeR != null) iceAxeR.SetActive(active);
         if (iceAxeL != null) iceAxeL.SetActive(active);
     }
-
-    // === Climb Input Handling ===
-    public void RegisterTriggerPress(IceAxe axe)
-    {
-        lastPressedAxe = axe;
-    }
-
-    public bool CanClimb(IceAxe axe)
-    {
-        return axe == lastPressedAxe;
-    }
-
-    public void ClearClimbState()
-    {
-        lastPressedAxe = null;
-    }
+    */
 
     // === Movement Handling ===
     public void KillMovement()

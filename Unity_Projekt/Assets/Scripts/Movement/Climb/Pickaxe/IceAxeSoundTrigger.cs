@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IceAxeSoundTrigger : MonoBehaviour
 {
-    public AudioClip[] enterSounds; // Array of audio clips for entering ice
-    public AudioClip[] exitSounds;  // Array of audio clips for exiting ice
-    public GameObject iceWallObject; // Assign the specific object in the Inspector (To only check for IceWall collisions)
+    [SerializeField] private AudioClip[] enterSounds; // Array of audio clips for entering ice
+    [SerializeField] private AudioClip[] exitSounds;  // Array of audio clips for exiting ice
+    [SerializeField] private List<Collider> allowedIceWalls;
     private AudioSource audioSource;
     private bool IsInserted;
 
@@ -17,32 +18,27 @@ public class IceAxeSoundTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Only respond to collisions with the specific object
-        if (other.gameObject == iceWallObject)
+        
+        if (allowedIceWalls.Contains(other))
         {
             PlayRandomSound(enterSounds); // Play a random enter sound
             IsInserted = true;
         }
     }
-
-    public void PlayExitSound()
-    {
-        PlayRandomSound(exitSounds);
-        IsInserted = false;
-    }
     private void OnTriggerExit(Collider other)
     {
-        if (IsInserted && other.gameObject == iceWallObject)
+        if (IsInserted && allowedIceWalls.Contains(other))
         {
-            PlayExitSound();
+            PlayRandomSound(exitSounds);
+            IsInserted = false;
         }
     }
-
 
     private void PlayRandomSound(AudioClip[] soundArray)
     {
         if (soundArray.Length > 0)
         {
-            // Pick a random clip from the array
+            Debug.Log($"played sound");
             AudioClip clip = soundArray[Random.Range(0, soundArray.Length)];
             audioSource.PlayOneShot(clip);
         }

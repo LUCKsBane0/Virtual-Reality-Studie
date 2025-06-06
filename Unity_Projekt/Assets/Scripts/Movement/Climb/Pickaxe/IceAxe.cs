@@ -1,119 +1,107 @@
-using Unity.XR.CoreUtils;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class IceAxe : MonoBehaviour
 {
+    [Header("Input")]
+    [SerializeField] private InputActionReference gripAction;
+    [SerializeField] private float gripThreshold = 0.8f;
+
+    [Header("Sound")]
+    [SerializeField] private AudioClip[] enterSounds; // Array of audio clips for entering ice
+    [SerializeField] private AudioClip[] exitSounds;  // Array of audio clips for exiting ice
+    private AudioSource audioSource;
+
     [SerializeField] private IceAxe OtherIceAxe;
-    [SerializeField] private CharacterController characterController;
-    [SerializeField] private IceAxePositioner IceAxePositioner;
-    [SerializeField] private IceAxeSoundTrigger IceAxeSoundTrigger;
-    [SerializeField] private InputActionProperty gripAction;
-    [SerializeField] private BoxCollider colliderSecureClimb;
-    [SerializeField] private BoxCollider colliderAudioClimb;
-    [SerializeField] private Transform player;
-    [SerializeField] private Transform hand;
-    [SerializeField] private IceAxeManager IceAxeManager;
-    [SerializeField] private float gripThreshold = 0.5f;
-    [SerializeField] private bool debugLogs = false;
-    [SerializeField] private LayerMask climbableLayers;
-    [SerializeField] private float climbCooldown = 0.25f;
 
-    private bool climbing = false;
-    private bool gripPressedLastFrame = false;
-    private Vector3 lastHandPosition;
-    private float lastClimbTime = -1f;
+    [SerializeField] private List<Collider> allowedIceWalls;
+    [SerializeField] private IceAxeManager iceAxeManager;
 
-    public bool IsClimbing()
+    private bool isInClimbZone = false;
+    private bool isAttached = false;
+    private float lastAttachTime = -Mathf.Infinity;
+    private bool gripWasPressed = false;
+
+    private void Start()
     {
-        return climbing;
+        // Get the AudioSource attached to this GameObject
+        audioSource = GetComponent<AudioSource>();
     }
-
-    public void StopClimb()
-    {
-        IceAxePositioner.Attach();
-        IceAxeSoundTrigger.PlayExitSound();
-        climbing = false;
-        if (debugLogs) Debug.Log("Stopped climbing!");
-    }
-
-    public void StartClimb()
-    {
-        IceAxePositioner.Detach();
-        lastHandPosition = GetHandPosition();
-
-        if (OtherIceAxe != null && OtherIceAxe.IsClimbing())
-        {
-            OtherIceAxe.StopClimb();
-        }
-
-        climbing = true;
-        lastClimbTime = Time.time;
-        IceAxeManager.KillMovement();
-
-        if (debugLogs) Debug.Log("Started climb!");
-    }
-
-    private Vector3 GetHandPosition()
-    {
-        return hand.position;
-    }
-
-    private void Climb()
-    {
-        Vector3 currentHandPosition = GetHandPosition();
-        Vector3 handMovement = currentHandPosition - lastHandPosition;
-
-        if (characterController != null)
-        {
-            characterController.Move(-handMovement);
-            lastHandPosition = currentHandPosition;
-        }
-
-        if (debugLogs) Debug.Log("Player is climbing.");
-    }
-
-    private bool IsClimbableTouching()
-    {
-        Collider[] hits = Physics.OverlapBox(colliderSecureClimb.bounds.center, colliderSecureClimb.bounds.extents, colliderSecureClimb.transform.rotation, climbableLayers);
-        if (hits.Length > 0) return true;
-
-        hits = Physics.OverlapBox(colliderAudioClimb.bounds.center, colliderAudioClimb.bounds.extents, colliderAudioClimb.transform.rotation, climbableLayers);
-        return hits.Length > 0;
-    }
-
-    void Update()
+    private void Update()
     {
         float gripValue = gripAction.action.ReadValue<float>();
         bool gripPressed = gripValue >= gripThreshold;
 
-        if (gripPressed && !gripPressedLastFrame)
+        if (gripPressed && !gripWasPressed)
         {
-            IceAxeManager.RegisterTriggerPress(this);
+            OtherIceAxe.Detach();
+            TryAttach();
+        }
+        else if (!gripPressed && gripWasPressed)
+        {
+            Detach();
+        }
+        if(isAttached)
+        {
+            //Do climb logic
         }
 
-        if (!climbing && gripPressed && Time.time - lastClimbTime > climbCooldown && IsClimbableTouching())
-        {
-            if (IceAxeManager.CanClimb(this))
-            {
-                StartClimb();
-            }
-        }
 
-        if (climbing && !gripPressed)
-        {
-            IceAxeManager.CheckClimb();
-            StopClimb();
-            IceAxeManager.ClearClimbState();
-        }
+        gripWasPressed = gripPressed;
+    }
 
-        if (climbing)
-        {
-            Climb();
-        }
+    private void TryAttach()
+    {
+        if (!isInClimbZone) return;
 
-        gripPressedLastFrame = gripPressed;
+        isAttached = true;
+        lastAttachTime = Time.time;
+        iceAxeManager?.KillMovement();
+
+        Debug.Log($"{name}: Attached to IceWall.");
+    }
+
+    private void Detach()
+    {
+        if (!isAttached) return;
+
+        isAttached = false;
+        iceAxeManager?.CheckClimb();
+        Debug.Log($"{name}: Detached.");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (allowedIceWalls.Contains(other))
+        {
+            isInClimbZone = true;
+            PlayRandomSound(enterSounds);
+            Debug.Log($"{name}: Entered climb zone.");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (allowedIceWalls.Contains(other))
+        {
+            isInClimbZone = false;
+            PlayRandomSound(exitSounds);
+            Debug.Log($"{name}: Exited climb zone.");
+        }
+    }
+    private void PlayRandomSound(AudioClip[] soundArray)
+    {
+        if (soundArray.Length > 0)
+        {
+            Debug.Log($"played sound");
+            AudioClip clip = soundArray[Random.Range(0, soundArray.Length)];
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
+    public bool IsClimbing()
+    {
+        return isAttached;
     }
 }
