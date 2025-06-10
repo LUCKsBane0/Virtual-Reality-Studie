@@ -13,6 +13,7 @@ TagManager:
   - Snow_Floor
   - HitTarget
   - Volume
+  - IceAxeArea
   layers:
   - Default
   - TransparentFX

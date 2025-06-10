@@ -6,43 +6,98 @@ public class IceAxeManager : MonoBehaviour
     [Header("Axe References")]
     [SerializeField] private GameObject iceAxeR;
     [SerializeField] private GameObject iceAxeL;
-    [SerializeField] private IceAxe IceAxeLeft;
-    [SerializeField] private IceAxe IceAxeRight;
+    [SerializeField] private IceAxe iceAxeLeft;
+    [SerializeField] private IceAxe iceAxeRight;
 
     [Header("Movement Systems")]
     [SerializeField] private GravityController gravityController;
     [SerializeField] private ArmSwingLocomotion armSwingLocomotion;
 
-    private bool isAxesActive = false;
+    [Header("Hit / Pick Areas")]
+    [SerializeField] public BoxCollider hitTarget;
+    [SerializeField] public BoxCollider icePickArea1;
+    [SerializeField] public BoxCollider icePickArea2;
+    [SerializeField] public BoxCollider icePickArea3;
+    [SerializeField] public LineRenderer rope1;
+    [SerializeField] public LineRenderer rope2;
 
+    [SerializeField] private CharacterController characterController;
 
+    private bool wasInsideIcePick = false;   // track last frame state
 
-    // === Axe Toggling ===
-    /**
-    public void ToggleAxes()
+    private bool wasInsidePick13 = false;
+    // === Update ===
+    void Update()
     {
-        isAxesActive = !isAxesActive;
-        SetAxesActive(isAxesActive);
+        // --- per-area checks ---
+        bool in1 = icePickArea1.bounds.Intersects(hitTarget.bounds);
+        bool in2 = icePickArea2.bounds.Intersects(hitTarget.bounds);
+        bool in3 = icePickArea3.bounds.Intersects(hitTarget.bounds);
+
+        bool inside = in1 || in2 || in3;
+
+        /* -------- general enter / exit -------- */
+        if (inside)
+        {
+            if (iceAxeL.activeSelf == false)
+            {
+                iceAxeL.SetActive(true);
+                iceAxeR.SetActive(true);
+            }
+        }
+        else if (!inside)
+        {
+            if (iceAxeL.activeSelf == true)
+            {
+
+                iceAxeL.SetActive(false);
+                iceAxeR.SetActive(false);
+            }
+        }
+
+        if(in1 && wasInsidePick13)
+        {
+            return;
+        }
+       
+        if (in1 && !wasInsidePick13)
+        {
+            rope1.enabled = true;
+        }
+        if (!in1 && wasInsidePick13)
+        {
+            rope1.enabled = false;
+        }
+
+
+
+        if (in3 && wasInsidePick13)
+        {
+            return;
+        }
+       
+        if (in3 && !wasInsidePick13)
+        {
+            rope2.enabled = true;
+        }
+        if (!in3 && wasInsidePick13)
+        {
+            rope2.enabled = false;
+        }
+
+        if (!in1 && !in3)
+        {
+            rope1.enabled = false;
+            rope2.enabled = false;
+        }
+
+
     }
 
-    public void ToggleAxesOn()
-    {
-        isAxesActive = true;
-        SetAxesActive(true);
-    }
+    /* ---------- private fields ---------- */
 
-    public void ToggleAxesOff()
-    {
-        isAxesActive = false;
-        SetAxesActive(false);
-    }
+   
 
-    private void SetAxesActive(bool active)
-    {
-        if (iceAxeR != null) iceAxeR.SetActive(active);
-        if (iceAxeL != null) iceAxeL.SetActive(active);
-    }
-    */
 
     // === Movement Handling ===
     public void KillMovement()
@@ -53,15 +108,25 @@ public class IceAxeManager : MonoBehaviour
 
     public void ReviveMovement()
     {
-        gravityController?.EnableGravity();
+        bool groundedAndInPick =
+            characterController != null && !characterController.isGrounded &&
+            (icePickArea1.bounds.Intersects(hitTarget.bounds) ||
+             icePickArea3.bounds.Intersects(hitTarget.bounds));
+
+        if (!groundedAndInPick)
+            gravityController?.EnableGravity();   // allow fall
+        else
+            gravityController?.DisableGravity();  // stay “stuck”
+
         if (armSwingLocomotion != null) armSwingLocomotion.enable = true;
     }
 
+
     public void CheckClimb()
     {
-        if (IceAxeLeft != null && IceAxeRight != null)
+        if (iceAxeLeft != null && iceAxeRight != null)
         {
-            if (!IceAxeLeft.IsClimbing() && !IceAxeRight.IsClimbing())
+            if (!iceAxeLeft.IsClimbing() && !iceAxeRight.IsClimbing())
             {
                 ReviveMovement();
             }

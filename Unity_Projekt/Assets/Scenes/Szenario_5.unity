@@ -29694,8 +29694,8 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: a709f84ab9561cb4fb18abab1ad99ec9, type: 2}
-  m_TreeDistance: 185
-  m_TreeBillboardDistance: 139
+  m_TreeDistance: 44
+  m_TreeBillboardDistance: 318
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -41162,8 +41162,8 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: c71f0d2eda33cfb439e6aa461cb9e67b, type: 2}
-  m_TreeDistance: 185
-  m_TreeBillboardDistance: 177
+  m_TreeDistance: 21
+  m_TreeBillboardDistance: 1102
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -50869,8 +50869,8 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: cb3c1344024fa344aa7244d1753ffe29, type: 2}
-  m_TreeDistance: 185
-  m_TreeBillboardDistance: 157
+  m_TreeDistance: 147
+  m_TreeBillboardDistance: 791
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -72467,8 +72467,8 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: efadb86c8f4480748903a0bfdcd68664, type: 2}
-  m_TreeDistance: 85
-  m_TreeBillboardDistance: 33
+  m_TreeDistance: 21
+  m_TreeBillboardDistance: 258
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -72485,7 +72485,7 @@ Terrain:
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
   m_MaterialTemplate: {fileID: 2100000, guid: c5067b54da3734144b15dfc51ea73564, type: 2}
-  m_BakeLightProbesForTrees: 1
+  m_BakeLightProbesForTrees: 0
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
   m_ReceiveGI: 1
@@ -96325,7 +96325,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 0bf37cca811aee34ca162afeed6be844, type: 2}
-  m_TreeDistance: 185
+  m_TreeDistance: 21
   m_TreeBillboardDistance: 144
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
@@ -106388,8 +106388,8 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 0698b00dd7077344fa0afd37f1c463e1, type: 2}
-  m_TreeDistance: 185
-  m_TreeBillboardDistance: 157
+  m_TreeDistance: 108
+  m_TreeBillboardDistance: 626
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80

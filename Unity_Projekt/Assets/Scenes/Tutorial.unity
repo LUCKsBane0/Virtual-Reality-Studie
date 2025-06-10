@@ -5231,6 +5231,7 @@ MonoBehaviour:
     - Szenario_3
     - Szenario_5
     - Szenario_4
+    - Szenario_2
 --- !u!114 &1852718709
 MonoBehaviour:
   m_ObjectHideFlags: 0
